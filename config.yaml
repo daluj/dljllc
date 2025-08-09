@@ -1,4 +1,4 @@
-baseURL: 'https://example.com'
+baseURL: 'https://dljllc.pages.dev/'
 languageCode: 'en-us'
 title: 'DLJ LLC - Tech Consulting'
 
@@ -10,7 +10,7 @@ module:
 # Plausible Analytics configuration
 params:
   plausible:
-    domain: 'example.com'
+    domain: 'dljllc.pages.dev'
     script: 'https://plausible.io/js/script.js'
   
   # Site parameters
