@@ -4,6 +4,19 @@
 <meta name="author" content="{{ .Site.Params.meta.author }}">
 <meta name="keywords" content="{{ .Site.Params.meta.keywords }}">
 
+<!-- Performance optimizations -->
+<meta name="theme-color" content="#2563eb">
+<meta name="color-scheme" content="light dark">
+<meta name="format-detection" content="telephone=no">
+<meta name="referrer" content="strict-origin-when-cross-origin">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1">
+<link rel="dns-prefetch" href="//fonts.googleapis.com">
+<link rel="dns-prefetch" href="//fonts.gstatic.com">
+<link rel="dns-prefetch" href="//plausible.io">
+<link rel="dns-prefetch" href="//unpkg.com">
+<link rel="preconnect" href="https://unpkg.com" crossorigin>
+
 <!-- Open Graph / Facebook -->
 <meta property="og:type" content="{{ if .IsPage }}article{{ else }}website{{ end }}">
 <meta property="og:url" content="{{ .Permalink }}">
@@ -23,28 +36,56 @@
 <!-- Title -->
 <title>{{ if .Title }}{{ .Title }} | {{ .Site.Title }}{{ else }}{{ .Site.Title }}{{ end }}</title>
 
-<!-- Favicon -->
+<!-- Favicon and PWA -->
 <link rel="icon" type="image/x-icon" href="/favicon.ico">
 <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
 <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
 <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+<link rel="manifest" href="/manifest.json">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="default">
+<meta name="apple-mobile-web-app-title" content="DL Jones LLC">
 
-<!-- Fonts -->
+<!-- Fonts with optimized loading -->
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet" media="print" onload="this.media='all'">
+<noscript><link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet"></noscript>
 
-<!-- CSS -->
+<!-- Critical CSS inline -->
+<style>
+  html{scroll-behavior:smooth}body{font-family:Inter,system-ui,sans-serif;line-height:1.6;color:#111827;background-color:#f9fafb;margin:0;padding:0}*,*::before,*::after{box-sizing:border-box}h1,h2,h3,h4,h5,h6{font-weight:600;line-height:1.25}h1{font-size:3rem}h2{font-size:1.5rem}.btn-primary{background-color:#2563eb;color:#fff;padding:0.75rem 1.5rem;border-radius:0.5rem;font-weight:500;text-decoration:none;display:inline-block;transition:all 0.2s}.btn-primary:hover{background-color:#1d4ed8}.glass-card{background-color:rgba(255,255,255,0.3);backdrop-filter:blur(12px);border:1px solid rgba(255,255,255,0.2);border-radius:0.75rem;box-shadow:0 10px 15px -3px rgba(0,0,0,0.1)}.gradient-bg{background:linear-gradient(135deg,#2563eb 0%,#3b82f6 100%)}.hero-gradient{background:linear-gradient(135deg,#f8fafc 0%,#e2e8f0 100%)}
+</style>
+
+<!-- CSS with preload -->
 {{ $css := resources.Get "css/input.css" | postCSS | minify | fingerprint }}
-<link rel="stylesheet" href="{{ $css.Permalink }}" integrity="{{ $css.Data.Integrity }}">
+<link rel="preload" href="{{ $css.Permalink }}" as="style" onload="this.onload=null;this.rel='stylesheet'" integrity="{{ $css.Data.Integrity }}">
+<noscript><link rel="stylesheet" href="{{ $css.Permalink }}" integrity="{{ $css.Data.Integrity }}"></noscript>
 
-<!-- JavaScript -->
+<!-- JavaScript with preload -->
 {{ $js := resources.Get "js/main.js" | js.Build | minify | fingerprint }}
+<link rel="preload" href="{{ $js.Permalink }}" as="script" integrity="{{ $js.Data.Integrity }}">
 <script src="{{ $js.Permalink }}" integrity="{{ $js.Data.Integrity }}" defer></script>
+
+<!-- Service Worker Registration -->
+<script>
+  if ('serviceWorker' in navigator) {
+    window.addEventListener('load', function() {
+      navigator.serviceWorker.register('/sw.js')
+        .then(function(registration) {
+          console.log('SW registered: ', registration);
+        })
+        .catch(function(registrationError) {
+          console.log('SW registration failed: ', registrationError);
+        });
+    });
+  }
+</script>
 
 <!-- Plausible Analytics -->
 {{ if .Site.Params.plausible.domain }}
-<script defer data-domain="{{ .Site.Params.plausible.domain }}" src="{{ .Site.Params.plausible.script }}"></script>
+<link rel="preload" href="https://plausible.io/js/script.js" as="script">
+<script defer data-domain="{{ .Site.Params.plausible.domain }}" src="https://plausible.io/js/script.js"></script>
 {{ end }}
 
 <!-- Schema.org structured data -->

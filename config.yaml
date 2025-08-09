@@ -86,6 +86,60 @@ params:
 # Build configuration
 build:
   writeStats: true
+  
+# Minification and optimization
+minify:
+  disableCSS: false
+  disableHTML: false
+  disableJS: false
+  disableJSON: false
+  disableSVG: false
+  disableXML: false
+  minifyOutput: true
+  tdewolff:
+    html:
+      keepDocumentTags: true
+      keepEndTags: true
+      keepDefaultAttrVals: true
+      keepWhitespace: false
+    css:
+      keepCSS2: true
+      precision: 0
+    js:
+      keepVarNames: false
+      precision: 0
+    json:
+      precision: 0
+    svg:
+      precision: 0
+    xml:
+      keepWhitespace: false
+
+# Image processing
+imaging:
+  hint: photo
+  quality: 85
+  resampleFilter: lanczos
+  anchor: smart
+  
+# Output formats
+outputs:
+  home: ["HTML", "RSS", "JSON"]
+  page: ["HTML"]
+  section: ["HTML", "RSS"]
+  
+# Caching
+caches:
+  getjson:
+    maxAge: "10m"
+  getcsv:
+    maxAge: "10m"
+  images:
+    maxAge: "1h"
+  assets:
+    maxAge: "1h"
+  modules:
+    maxAge: "10m"
 
 # Security
 security:

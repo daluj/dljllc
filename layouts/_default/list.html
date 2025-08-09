@@ -47,7 +47,11 @@
         <div class="aspect-w-16 aspect-h-9">
           <img src="{{ .Params.featured_image }}" 
                alt="{{ .Title }}" 
-               class="w-full h-48 object-cover">
+               class="w-full h-48 object-cover"
+               loading="lazy"
+               decoding="async"
+               width="400"
+               height="192">
         </div>
         {{ end }}
         

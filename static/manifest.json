@@ -1,0 +1,21 @@
+{
+  "name": "DL Jones LLC - Digital Marketing & Web Development",
+  "short_name": "DL Jones LLC",
+  "description": "Professional digital marketing and web development services",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#f9fafb",
+  "theme_color": "#2563eb",
+  "orientation": "portrait-primary",
+  "icons": [
+    {
+      "src": "/favicon.svg",
+      "sizes": "any",
+      "type": "image/svg+xml",
+      "purpose": "any maskable"
+    }
+  ],
+  "categories": ["business", "productivity"],
+  "lang": "en",
+  "dir": "ltr"
+}
