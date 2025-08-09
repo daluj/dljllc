@@ -1,0 +1,101 @@
+baseURL: 'https://example.com'
+languageCode: 'en-us'
+title: 'DLJ LLC - Tech Consulting'
+theme: ''
+
+# Hugo modules for Plausible Analytics
+module:
+  imports:
+    - path: github.com/divinerites/plausible-hugo
+
+# Plausible Analytics configuration
+params:
+  plausible:
+    domain: 'example.com'
+    script: 'https://plausible.io/js/script.js'
+  
+  # Site parameters
+  description: 'AI and Automation consulting for logistics, travel, restaurants, language education, and health industries'
+  author: 'DLJ LLC'
+  
+  # Design system colors
+  colors:
+    primary: '#2563eb'
+    neutral_white: '#FFFFFF'
+    neutral_light: '#F7F7F7'
+    neutral_gray: '#D1D5DB'
+    neutral_dark: '#6B7280'
+
+# Multilingual configuration
+languages:
+  en:
+    languageName: 'English'
+    weight: 1
+    title: 'DLJ LLC - Tech Consulting'
+    params:
+      description: 'AI and Automation consulting for logistics, travel, restaurants, language education, and health industries'
+  es:
+    languageName: 'Español'
+    weight: 2
+    title: 'DLJ LLC - Consultoría Tecnológica'
+    params:
+      description: 'Consultoría en IA y Automatización para logística, viajes, restaurantes, educación de idiomas y salud'
+
+# Menu configuration
+menu:
+  main:
+    - name: 'Home'
+      url: '/'
+      weight: 1
+    - name: 'Services'
+      url: '/services/'
+      weight: 2
+    - name: 'Blog'
+      url: '/blog/'
+      weight: 3
+    - name: 'Contact'
+      url: '/contact/'
+      weight: 4
+
+# Pagination
+paginate: 6
+paginatePath: 'page'
+
+# Markup configuration
+markup:
+  goldmark:
+    renderer:
+      unsafe: true
+  highlight:
+    style: 'github'
+    lineNos: true
+
+# SEO and performance
+params:
+  meta:
+    author: 'DLJ LLC'
+    description: 'Streamline your operations with AI-powered solutions. Expert consulting in automation, apps, and business tools.'
+    keywords: 'AI consulting, automation, business tools, logistics, travel, restaurants, language education, health'
+  
+  # Social media
+  social:
+    twitter: ''
+    linkedin: ''
+    github: ''
+
+# Build configuration
+build:
+  writeStats: true
+
+# Security
+security:
+  exec:
+    allow:
+      - '^dart-sass-embedded$'
+      - '^go$'
+      - '^npx$'
+      - '^postcss$'
+  funcs:
+    getenv:
+      - '^HUGO_'
+      - '^WC_'
