@@ -9,45 +9,51 @@ A minimalist, high-end company website built with Hugo Extended, Tailwind CSS, A
 - Node.js (v18 or later)
 - npm or yarn
 
-### Development Setup
+### Development Setup with Devbox
 
-1. **Clone and navigate to the project**:
+1. **Install Devbox** (if not already installed):
+   ```bash
+   curl -fsSL https://get.jetpack.io/devbox | bash
+   ```
+
+2. **Clone and navigate to the project**:
    ```bash
    cd /home/david/dljllc
    ```
 
-2. **Install dependencies**:
+3. **Start Devbox shell**:
    ```bash
-   npm install
+   devbox shell
    ```
 
-3. **Initialize Hugo modules**:
+4. **Setup the project** (run once):
    ```bash
-   hugo mod init github.com/dljllc/website
-   hugo mod get
+   devbox run setup
    ```
 
-4. **Start development server**:
+5. **Start development server**:
    ```bash
-   hugo server -D --bind 0.0.0.0
+   devbox run dev
    ```
 
-5. **Open in browser**:
+6. **Open in browser**:
    Visit `http://localhost:1313`
 
-### Using VS Code Dev Container
+### Alternative: Manual Setup
 
-For a consistent development environment:
+If you prefer not to use Devbox:
 
-1. Open the project in VS Code
-2. Install the "Dev Containers" extension
-3. Press `Ctrl+Shift+P` and select "Dev Containers: Reopen in Container"
-4. The container will automatically install Hugo Extended, Node.js, and dependencies
+1. Install Hugo Extended (v0.121.1+) and Node.js (v18+)
+2. Run `hugo mod init github.com/dljllc/website`
+3. Run `npm install`
+4. Run `hugo server -D --bind 0.0.0.0`
 
 ## 📁 Project Structure
 
 ```
-├── .devcontainer/          # VS Code dev container configuration
+├── devbox.json             # Devbox environment configuration
+├── devbox.lock             # Devbox lockfile for reproducible builds
+├── .devcontainer/          # VS Code dev container configuration (optional)
 ├── assets/
 │   ├── css/
 │   │   └── input.css       # Tailwind CSS input file

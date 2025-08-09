@@ -1,7 +1,6 @@
 baseURL: 'https://example.com'
 languageCode: 'en-us'
 title: 'DLJ LLC - Tech Consulting'
-theme: ''
 
 # Hugo modules for Plausible Analytics
 module:
@@ -58,8 +57,9 @@ menu:
       weight: 4
 
 # Pagination
-paginate: 6
-paginatePath: 'page'
+pagination:
+  pagerSize: 6
+  path: "page"
 
 # Markup configuration
 markup:
