@@ -3,7 +3,7 @@
 <head>
   {{ partial "head.html" . }}
 </head>
-<body class="font-body text-base text-gray-900 bg-white antialiased">
+<body class="font-body text-base text-gray-900 bg-white antialiased preload">
   {{ partial "header.html" . }}
   
   <main id="main" class="min-h-screen">
@@ -12,5 +12,13 @@
   
   {{ partial "footer.html" . }}
   {{ partial "scripts.html" . }}
+  
+  <script>
+    // Remove preload class after page loads to enable animations
+    window.addEventListener('load', function() {
+      document.body.classList.remove('preload');
+      document.documentElement.classList.add('fonts-loaded');
+    });
+  </script>
 </body>
 </html>
