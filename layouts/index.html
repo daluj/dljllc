@@ -58,7 +58,7 @@
            :class="{ 'animate-fade-in animation-delay-400': isVisible }">
           Streamline processes with intelligent solutions that reduce manual work and increase efficiency.
         </p>
-        <a href="/services/#ai-automation" class="text-primary font-medium hover:text-primary-600 transition-colors duration-200 inline-flex items-center">
+        <a href="/services/ai-automation" class="text-primary font-medium hover:text-primary-600 transition-colors duration-200 inline-flex items-center">
           Learn more 
           <svg class="ml-1 h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3" />
@@ -82,7 +82,7 @@
            :class="{ 'animate-fade-in animation-delay-400': isVisible }">
           Custom applications and internal tools designed for operational efficiency and growth.
         </p>
-        <a href="/services/#apps-tools" class="text-primary font-medium hover:text-primary-600 transition-colors duration-200 inline-flex items-center">
+        <a href="/services/business-tools" class="text-primary font-medium hover:text-primary-600 transition-colors duration-200 inline-flex items-center">
           Learn more 
           <svg class="ml-1 h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3" />
@@ -106,7 +106,7 @@
            :class="{ 'animate-fade-in animation-delay-400': isVisible }">
           Specialized solutions for logistics, travel, restaurants, language education, and health sectors.
         </p>
-        <a href="/services/#industries" class="text-primary font-medium hover:text-primary-600 transition-colors duration-200 inline-flex items-center">
+        <a href="/services/industry-expertise" class="text-primary font-medium hover:text-primary-600 transition-colors duration-200 inline-flex items-center">
           Learn more 
           <svg class="ml-1 h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3" />
@@ -401,28 +401,5 @@
 </section>
 
 <!-- CTA Section -->
-<section class="py-20">
-  <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-    <!-- Badge Design -->
-    <div class="inline-flex items-center px-6 py-3 bg-gray-100 rounded-full mb-8">
-      <span class="text-sm font-medium text-gray-600 uppercase tracking-wider">Get Started</span>
-    </div>
-    <!-- Centered Title -->
-    <h2 class="text-5xl md:text-6xl lg:text-7xl text-gray-900 mb-8 leading-tight"
-        :class="{ 'animate-fade-in': isVisible }">
-      Ready to<br>Transform Your<br>Operations?
-    </h2>
-    <p class="text-xl md:text-2xl text-gray-600 mb-12 max-w-4xl mx-auto font-light leading-relaxed">
-      No costs, no obligations, no annoying sales pitch. Guaranteed.
-    </p>
-    <a href="/contact/" 
-       class="inline-flex items-center px-12 py-4 text-lg font-medium text-white hover:text-white bg-blue-600 hover:bg-blue-700 rounded-full transition-all duration-300 transform hover:scale-105 shadow-lg hover:shadow-xl"
-       onclick="trackEvent('CTA Click', { location: 'bottom', action: 'book-call' })">
-      Book A Call
-      <svg class="ml-2 h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3" />
-      </svg>
-    </a>
-  </div>
-</section>
+{{ partial "cta-card.html" (dict "title" "Ready to<br>Transform Your<br>Operations?" "subtitle" "Get Started" "description" "No costs, no obligations, no annoying sales pitch. Guaranteed." "buttonText" "Book A Call" "buttonLink" "/contact/") }}
 {{ end }}

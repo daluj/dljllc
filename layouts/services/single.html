@@ -1,0 +1,38 @@
+{{ define "main" }}
+<article class="py-12">
+  <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+    <!-- Page Header -->
+    <div class="mb-12 text-center">
+      <h1 class="text-4xl md:text-5xl font-bold text-gray-900 mb-6">{{ .Title }}</h1>
+      {{ if .Description }}
+      <p class="text-xl text-gray-600 max-w-3xl mx-auto">{{ .Description }}</p>
+      {{ end }}
+      
+      {{ if .Date }}
+      <div class="flex items-center justify-center mt-6 text-sm text-gray-500">
+        <time datetime="{{ .Date.Format "2006-01-02T15:04:05Z07:00" }}">
+          {{ .Date.Format "January 2, 2006" }}
+        </time>
+        {{ if .Params.author }}
+        <span class="mx-2">•</span>
+        <span>{{ .Params.author }}</span>
+        {{ end }}
+        {{ if .ReadingTime }}
+        <span class="mx-2">•</span>
+        <span>{{ .ReadingTime }} min read</span>
+        {{ end }}
+      </div>
+      {{ end }}
+    </div>
+    
+    <!-- Content -->
+    <div class="prose prose-lg prose-blue max-w-none">
+      {{ .Content }}
+    </div>
+    
+  </div>
+
+  <!-- CTA Section -->
+  {{ partial "cta-card.html" (dict "title" "Ready to<br>Transform Your<br>Operations?" "subtitle" "Get Started" "description" "No costs, no obligations, no annoying sales pitch. Guaranteed." "buttonText" "Book A Call" "buttonLink" "/contact/") }}
+</article>
+{{ end }}

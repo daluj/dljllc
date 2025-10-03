@@ -43,8 +43,8 @@ languages:
 # Menu configuration
 # menu:
 #  main:
-#    - name: 'Services'
-#      url: '/services/'
+#    - name: 'Home'
+#      url: '/'
 #      weight: 1
 
 # Pagination
@@ -70,8 +70,8 @@ params:
   
   # Social media
   social:
-    twitter: 'https://x.com/'
-    linkedin: 'https://www.linkedin.com/'
+    twitter: ''
+    linkedin: ''
 
 # Build configuration
 build:
