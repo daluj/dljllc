@@ -70,9 +70,8 @@ params:
   
   # Social media
   social:
-    twitter: ''
-    linkedin: ''
-    github: ''
+    twitter: 'https://x.com/'
+    linkedin: 'https://www.linkedin.com/'
 
 # Build configuration
 build:
