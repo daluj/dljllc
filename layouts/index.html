@@ -183,88 +183,99 @@
     <div class="text-center mb-20">
       <h2 class="text-4xl md:text-5xl font-light text-gray-900 mb-6"
           :class="{ 'animate-fade-in': isVisible }">
-        Why Choose DLJ LLC
+        Why Choose <span class="font-medium">DLJ Tech</span> over <em class="font-light italic">everyone</em> else?
       </h2>
-      <p class="text-xl text-gray-600 max-w-3xl mx-auto font-light"
-         :class="{ 'animate-fade-in animation-delay-200': isVisible }">
-        See how our approach delivers superior results
-      </p>
     </div>
     
-    <div class="bg-white rounded-3xl overflow-hidden shadow-xl">
-      <div class="grid grid-cols-1 lg:grid-cols-2">
-        <!-- Traditional Approach -->
-        <div class="p-12 border-r border-gray-100">
-          <div class="text-center mb-8">
-            <div class="w-16 h-16 bg-red-100 rounded-2xl flex items-center justify-center mx-auto mb-4">
-              <svg class="h-8 w-8 text-red-500" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
-              </svg>
-            </div>
-            <h3 class="text-2xl font-medium text-gray-900 mb-2">Traditional Approach</h3>
-          </div>
+    <div class="grid grid-cols-1 lg:grid-cols-2 gap-8 items-end">
+      <!-- Other Agencies (Shaded) -->
+      <div class="space-y-4 flex flex-col">
+        <!-- Title outside the box -->
+        <div class="text-center">
+          <h3 class="text-2xl font-medium text-gray-500 mb-2">Other Agencies</h3>
+        </div>
+        <!-- Box content -->
+        <div class="p-8 bg-gray-50 opacity-60 rounded-3xl shadow-lg flex-1 min-h-[400px] flex flex-col justify-center">
           <ul class="space-y-4">
             <li class="flex items-start">
-              <svg class="h-5 w-5 text-red-500 mt-1 mr-3 flex-shrink-0" fill="currentColor" viewBox="0 0 20 20">
+              <svg class="h-5 w-5 text-gray-400 mt-1 mr-3 flex-shrink-0" fill="currentColor" viewBox="0 0 20 20">
                 <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zM8.707 7.293a1 1 0 00-1.414 1.414L8.586 10l-1.293 1.293a1 1 0 101.414 1.414L10 11.414l1.293 1.293a1 1 0 001.414-1.414L11.414 10l1.293-1.293a1 1 0 00-1.414-1.414L10 8.586 8.707 7.293z" clip-rule="evenodd" />
               </svg>
-              <span class="text-gray-600 font-light">Manual processes and repetitive tasks</span>
+              <span class="text-gray-500 font-light">Generic content templates</span>
             </li>
             <li class="flex items-start">
-              <svg class="h-5 w-5 text-red-500 mt-1 mr-3 flex-shrink-0" fill="currentColor" viewBox="0 0 20 20">
+              <svg class="h-5 w-5 text-gray-400 mt-1 mr-3 flex-shrink-0" fill="currentColor" viewBox="0 0 20 20">
                 <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zM8.707 7.293a1 1 0 00-1.414 1.414L8.586 10l-1.293 1.293a1 1 0 101.414 1.414L10 11.414l1.293 1.293a1 1 0 001.414-1.414L11.414 10l1.293-1.293a1 1 0 00-1.414-1.414L10 8.586 8.707 7.293z" clip-rule="evenodd" />
               </svg>
-              <span class="text-gray-600 font-light">High operational costs</span>
+              <span class="text-gray-500 font-light">Monthly reporting only</span>
             </li>
             <li class="flex items-start">
-              <svg class="h-5 w-5 text-red-500 mt-1 mr-3 flex-shrink-0" fill="currentColor" viewBox="0 0 20 20">
+              <svg class="h-5 w-5 text-gray-400 mt-1 mr-3 flex-shrink-0" fill="currentColor" viewBox="0 0 20 20">
                 <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zM8.707 7.293a1 1 0 00-1.414 1.414L8.586 10l-1.293 1.293a1 1 0 101.414 1.414L10 11.414l1.293 1.293a1 1 0 001.414-1.414L11.414 10l1.293-1.293a1 1 0 00-1.414-1.414L10 8.586 8.707 7.293z" clip-rule="evenodd" />
               </svg>
-              <span class="text-gray-600 font-light">Prone to human error</span>
+              <span class="text-gray-500 font-light">Separate teams for different platforms</span>
             </li>
             <li class="flex items-start">
-              <svg class="h-5 w-5 text-red-500 mt-1 mr-3 flex-shrink-0" fill="currentColor" viewBox="0 0 20 20">
+              <svg class="h-5 w-5 text-gray-400 mt-1 mr-3 flex-shrink-0" fill="currentColor" viewBox="0 0 20 20">
                 <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zM8.707 7.293a1 1 0 00-1.414 1.414L8.586 10l-1.293 1.293a1 1 0 101.414 1.414L10 11.414l1.293 1.293a1 1 0 001.414-1.414L11.414 10l1.293-1.293a1 1 0 00-1.414-1.414L10 8.586 8.707 7.293z" clip-rule="evenodd" />
               </svg>
-              <span class="text-gray-600 font-light">Limited scalability</span>
+              <span class="text-gray-500 font-light">Long-term contracts required</span>
+            </li>
+            <li class="flex items-start">
+              <svg class="h-5 w-5 text-gray-400 mt-1 mr-3 flex-shrink-0" fill="currentColor" viewBox="0 0 20 20">
+                <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zM8.707 7.293a1 1 0 00-1.414 1.414L8.586 10l-1.293 1.293a1 1 0 101.414 1.414L10 11.414l1.293 1.293a1 1 0 001.414-1.414L11.414 10l1.293-1.293a1 1 0 00-1.414-1.414L10 8.586 8.707 7.293z" clip-rule="evenodd" />
+              </svg>
+              <span class="text-gray-500 font-light">One-size-fits-all approach</span>
             </li>
           </ul>
         </div>
-        
-        <!-- Our Approach -->
-        <div class="p-12 bg-gradient-to-br from-primary/5 to-primary/10">
-          <div class="text-center mb-8">
-            <div class="w-16 h-16 bg-primary/20 rounded-2xl flex items-center justify-center mx-auto mb-4">
-              <svg class="h-8 w-8 text-primary" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" />
-              </svg>
-            </div>
-            <h3 class="text-2xl font-medium text-gray-900 mb-2">Our Approach</h3>
-          </div>
-          <ul class="space-y-4">
+      </div>
+      
+      <div class="space-y-4 flex flex-col">
+        <!-- Title outside the box -->
+        <div class="text-center">
+          <h3 class="text-2xl font-medium text-gray-900 mb-2"> 
+            DLJ Tech
+          </h3>
+        </div>
+        <!-- Box content - Made taller with extra padding and content -->
+        <div class="p-12 bg-white border-l-4 border-blue-600 rounded-3xl shadow-xl min-h-[400px] flex-1">
+          <ul class="space-y-6">
             <li class="flex items-start">
-              <svg class="h-5 w-5 text-primary mt-1 mr-3 flex-shrink-0" fill="currentColor" viewBox="0 0 20 20">
+              <svg class="h-5 w-5 text-green-600 mt-1 mr-3 flex-shrink-0" fill="currentColor" viewBox="0 0 20 20">
                 <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd" />
               </svg>
-              <span class="text-gray-600 font-light">Intelligent automation and AI integration</span>
+              <span class="text-gray-900 font-medium">If it doesn't work, we refund you</span>
             </li>
             <li class="flex items-start">
-              <svg class="h-5 w-5 text-primary mt-1 mr-3 flex-shrink-0" fill="currentColor" viewBox="0 0 20 20">
+              <svg class="h-5 w-5 text-green-600 mt-1 mr-3 flex-shrink-0" fill="currentColor" viewBox="0 0 20 20">
                 <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd" />
               </svg>
-              <span class="text-gray-600 font-light">20% average cost reduction</span>
+              <span class="text-gray-900 font-medium">Start small and see if we're a good fit</span>
             </li>
             <li class="flex items-start">
-              <svg class="h-5 w-5 text-primary mt-1 mr-3 flex-shrink-0" fill="currentColor" viewBox="0 0 20 20">
+              <svg class="h-5 w-5 text-green-600 mt-1 mr-3 flex-shrink-0" fill="currentColor" viewBox="0 0 20 20">
                 <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd" />
               </svg>
-              <span class="text-gray-600 font-light">99.9% accuracy and reliability</span>
+              <span class="text-gray-900 font-medium">Facebook, Instagram, Google, we cover it all</span>
             </li>
             <li class="flex items-start">
-              <svg class="h-5 w-5 text-primary mt-1 mr-3 flex-shrink-0" fill="currentColor" viewBox="0 0 20 20">
+              <svg class="h-5 w-5 text-green-600 mt-1 mr-3 flex-shrink-0" fill="currentColor" viewBox="0 0 20 20">
                 <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd" />
               </svg>
-              <span class="text-gray-600 font-light">Infinitely scalable solutions</span>
+              <span class="text-gray-900 font-medium">Stay flexible - no long-term commitments required</span>
+            </li>
+            <li class="flex items-start">
+              <svg class="h-5 w-5 text-green-600 mt-1 mr-3 flex-shrink-0" fill="currentColor" viewBox="0 0 20 20">
+                <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd" />
+              </svg>
+              <span class="text-gray-900 font-medium">Regular calls to review what's working</span>
+            </li>
+            <li class="flex items-start">
+              <svg class="h-5 w-5 text-green-600 mt-1 mr-3 flex-shrink-0" fill="currentColor" viewBox="0 0 20 20">
+                <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd" />
+              </svg>
+              <span class="text-gray-900 font-medium">Dedicated account manager for your success</span>
             </li>
           </ul>
         </div>
