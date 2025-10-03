@@ -30,14 +30,15 @@
 <section class="py-20" id="services">
   <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
     <div class="text-center mb-20">
-      <h2 class="text-4xl md:text-5xl font-light text-gray-900 mb-6"
+      <!-- Badge Design -->
+      <div class="inline-flex items-center px-6 py-3 bg-gray-100 rounded-full mb-8">
+        <span class="text-sm font-medium text-gray-600 uppercase tracking-wider">Services</span>
+      </div>
+      <!-- Centered Title -->
+      <h2 class="text-5xl md:text-6xl lg:text-7xl text-gray-900 mb-6 leading-tight"
           :class="{ 'animate-fade-in': isVisible }">
-        Our Expertise
+        How we can<br> help you grow
       </h2>
-      <p class="text-xl text-gray-600 max-w-3xl mx-auto font-light"
-         :class="{ 'animate-fade-in animation-delay-200': isVisible }">
-        We specialize in transforming business operations through intelligent automation and custom solutions.
-      </p>
     </div>
     
     <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
@@ -120,12 +121,15 @@
 <section class="py-20">
   <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
     <div class="text-center mb-20">
-      <h2 class="text-4xl md:text-5xl font-light text-gray-900 mb-6 tracking-tight">
-        How We Work
+      <!-- Badge Design -->
+      <div class="inline-flex items-center px-6 py-3 bg-gray-100 rounded-full mb-8">
+        <span class="text-sm font-medium text-gray-600 uppercase tracking-wider">How we work</span>
+      </div>
+      <!-- Centered Title -->
+      <h2 class="text-5xl md:text-6xl lg:text-7xl font-bold text-gray-900 mb-6 leading-tight text-center"
+          :class="{ 'animate-fade-in': isVisible }">
+        It's Straightforward
       </h2>
-      <p class="text-xl text-gray-600 max-w-3xl mx-auto font-light leading-relaxed">
-        Our streamlined process ensures maximum efficiency and results
-      </p>
     </div>
     
     <div class="grid grid-cols-1 lg:grid-cols-3 gap-12 relative">
@@ -181,9 +185,14 @@
 <section class="py-20">
   <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
     <div class="text-center mb-20">
-      <h2 class="text-4xl md:text-5xl font-light text-gray-900 mb-6"
+      <!-- Badge Design -->
+      <div class="inline-flex items-center px-6 py-3 bg-gray-100 rounded-full mb-8">
+        <span class="text-sm font-medium text-gray-600 uppercase tracking-wider">The difference</span>
+      </div>
+      <!-- Centered Title -->
+      <h2 class="text-5xl md:text-6xl lg:text-7xl text-gray-900 mb-6 leading-tight"
           :class="{ 'animate-fade-in': isVisible }">
-        Why Choose <span class="font-medium">DLJ Tech</span> over <em class="font-light italic">everyone</em> else?
+        Why choose<br>DLJ Tech over<br> everyone else?
       </h2>
     </div>
     
@@ -288,14 +297,15 @@
 <section class="py-20">
   <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
     <div class="text-center mb-20">
-      <h2 class="text-4xl md:text-5xl font-light text-gray-900 mb-6"
+      <!-- Badge Design -->
+      <div class="inline-flex items-center px-6 py-3 bg-gray-100 rounded-full mb-8">
+        <span class="text-sm font-medium text-gray-600 uppercase tracking-wider">FAQ</span>
+      </div>
+      <!-- Centered Title -->
+      <h2 class="text-5xl md:text-6xl lg:text-7xl text-gray-900 mb-6 leading-tight"
           :class="{ 'animate-fade-in': isVisible }">
-        Frequently Asked Questions
+        Got Questions?
       </h2>
-      <p class="text-xl text-gray-600 font-light"
-         :class="{ 'animate-fade-in animation-delay-200': isVisible }">
-        Everything you need to know about our services
-      </p>
     </div>
     
     <div class="space-y-6" x-data="{ openFaq: null }">
@@ -393,18 +403,22 @@
 <!-- CTA Section -->
 <section class="py-20">
   <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-    <h2 class="text-4xl md:text-5xl font-light text-gray-900 mb-8"
+    <!-- Badge Design -->
+    <div class="inline-flex items-center px-6 py-3 bg-gray-100 rounded-full mb-8">
+      <span class="text-sm font-medium text-gray-600 uppercase tracking-wider">Get Started</span>
+    </div>
+    <!-- Centered Title -->
+    <h2 class="text-5xl md:text-6xl lg:text-7xl text-gray-900 mb-8 leading-tight"
         :class="{ 'animate-fade-in': isVisible }">
-      Ready to Transform Your Operations?
+      Ready to<br>Transform Your<br>Operations?
     </h2>
-    <p class="text-xl text-gray-600 mb-12 font-light leading-relaxed"
-       :class="{ 'animate-fade-in animation-delay-200': isVisible }">
-      Get a free consultation and discover how we can streamline your business processes.
+    <p class="text-xl md:text-2xl text-gray-600 mb-12 max-w-4xl mx-auto font-light leading-relaxed">
+      No costs, no obligations, no annoying sales pitch. Guaranteed.
     </p>
     <a href="/contact/" 
        class="inline-flex items-center px-12 py-4 text-lg font-medium text-white hover:text-white bg-blue-600 hover:bg-blue-700 rounded-full transition-all duration-300 transform hover:scale-105 shadow-lg hover:shadow-xl"
        onclick="trackEvent('CTA Click', { location: 'bottom', action: 'book-call' })">
-      Book Your Free Consultation
+      Book A Call
       <svg class="ml-2 h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3" />
       </svg>
