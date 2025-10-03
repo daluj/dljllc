@@ -74,25 +74,6 @@ Alpine.data('contactForm', () => ({
   }
 }));
 
-Alpine.data('fadeInOnScroll', () => ({
-  isVisible: false,
-  
-  init() {
-    const observer = new IntersectionObserver((entries) => {
-      entries.forEach(entry => {
-        if (entry.isIntersecting) {
-          this.isVisible = true;
-        }
-      });
-    }, {
-      threshold: 0.1,
-      rootMargin: '0px 0px -50px 0px'
-    });
-    
-    observer.observe(this.$el);
-  }
-}));
-
 Alpine.data('blogShare', () => ({
   shareUrl: '',
   shareTitle: '',
