@@ -1,6 +1,6 @@
 baseURL: 'https://dljllc.pages.dev/'
 languageCode: 'en-us'
-title: 'DLJ LLC - Tech Consulting'
+title: 'DLJ'
 
 # Hugo modules for Plausible Analytics
 module:
@@ -41,20 +41,11 @@ languages:
       description: 'Consultoría en IA y Automatización para logística, viajes, restaurantes, educación de idiomas y salud'
 
 # Menu configuration
-menu:
-  main:
-    - name: 'Home'
-      url: '/'
-      weight: 1
-    - name: 'Services'
-      url: '/services/'
-      weight: 2
-    - name: 'Blog'
-      url: '/blog/'
-      weight: 3
-    - name: 'Contact'
-      url: '/contact/'
-      weight: 4
+# menu:
+#  main:
+#    - name: 'Services'
+#      url: '/services/'
+#      weight: 1
 
 # Pagination
 pagination:

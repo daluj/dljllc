@@ -193,21 +193,6 @@
 <link rel="preload" href="{{ $js.Permalink }}" as="script" integrity="{{ $js.Data.Integrity }}">
 <script src="{{ $js.Permalink }}" integrity="{{ $js.Data.Integrity }}" defer></script>
 
-<!-- Service Worker Registration -->
-<script>
-  if ('serviceWorker' in navigator) {
-    window.addEventListener('load', function() {
-      navigator.serviceWorker.register('/sw.js')
-        .then(function(registration) {
-          console.log('SW registered: ', registration);
-        })
-        .catch(function(registrationError) {
-          console.log('SW registration failed: ', registrationError);
-        });
-    });
-  }
-</script>
-
 <!-- Plausible Analytics -->
 {{ if .Site.Params.plausible.domain }}
 <link rel="preload" href="https://plausible.io/js/script.js" as="script">
