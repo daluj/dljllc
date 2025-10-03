@@ -15,6 +15,9 @@ Alpine.data('contactForm', () => ({
   formData: {
     name: '',
     email: '',
+    phonePrefix: '+1',
+    phone: '',
+    company: '',
     message: ''
   },
   isSubmitting: false,
@@ -24,6 +27,19 @@ Alpine.data('contactForm', () => ({
   validateEmail(email) {
     const re = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
     return re.test(email);
+  },
+  
+  validatePhone(phone) {
+    // Remove all non-digit characters for validation
+    const cleanPhone = phone.replace(/\D/g, '');
+    // Basic validation: should have at least 7 digits
+    return cleanPhone.length >= 7 && cleanPhone.length <= 15;
+  },
+  
+  validatePhonePrefix(prefix) {
+    // Basic validation for phone prefix: should start with + and contain digits
+    const cleanPrefix = prefix.trim();
+    return /^\+\d{1,4}$/.test(cleanPrefix);
   },
   
   validate() {
@@ -37,6 +53,16 @@ Alpine.data('contactForm', () => ({
       this.errors.email = 'Email is required';
     } else if (!this.validateEmail(this.formData.email)) {
       this.errors.email = 'Please enter a valid email';
+    }
+    
+    if (!this.formData.phonePrefix.trim()) {
+      this.errors.phone = 'Phone prefix is required';
+    } else if (!this.validatePhonePrefix(this.formData.phonePrefix)) {
+      this.errors.phone = 'Please enter a valid phone prefix (e.g., +1)';
+    } else if (!this.formData.phone.trim()) {
+      this.errors.phone = 'Phone number is required';
+    } else if (!this.validatePhone(this.formData.phone)) {
+      this.errors.phone = 'Please enter a valid phone number';
     }
     
     if (!this.formData.message.trim()) {
@@ -56,7 +82,7 @@ Alpine.data('contactForm', () => ({
       await new Promise(resolve => setTimeout(resolve, 1000));
       
       this.isSubmitted = true;
-      this.formData = { name: '', email: '', message: '' };
+      this.formData = { name: '', email: '', phonePrefix: '+1', phone: '', company: '', message: '' };
       
       // Track form submission with Plausible
       if (window.plausible) {

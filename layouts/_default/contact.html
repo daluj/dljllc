@@ -64,6 +64,30 @@
                      placeholder="your@email.com">
               <p x-show="errors.email" x-text="errors.email" class="mt-1 text-sm text-red-600"></p>
             </div>
+
+            <!-- Phone Field -->
+            <div>
+              <label for="phone" class="block text-sm font-medium text-gray-700 mb-2">
+                Phone Number *
+              </label>
+              <div class="flex">
+                <!-- Prefix Input -->
+                <input type="text" 
+                       x-model="formData.phonePrefix"
+                       class="w-20 form-input rounded-r-none border-r-0 text-center"
+                       :class="{ 'border-red-500 focus:border-red-500 focus:ring-red-500': errors.phone }"
+                       placeholder="+1">
+                
+                <!-- Phone Number Input -->
+                <input type="tel" 
+                       id="phone" 
+                       x-model="formData.phone"
+                       class="flex-1 form-input rounded-l-none"
+                       :class="{ 'border-red-500 focus:border-red-500 focus:ring-red-500': errors.phone }"
+                       placeholder="123-456-7890">
+              </div>
+              <p x-show="errors.phone" x-text="errors.phone" class="mt-1 text-sm text-red-600"></p>
+            </div>
             
             <!-- Company Field (Optional) -->
             <div>
