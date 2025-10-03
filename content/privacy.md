@@ -1,10 +1,8 @@
 ---
 title: "Privacy Policy"
 description: "Our commitment to protecting your privacy and personal information."
-date: 2024-01-01
+date: 2025-10-03
 ---
-
-*Last updated: January 1, 2024*
 
 ## Our Commitment to Privacy
 
@@ -15,7 +13,6 @@ At DLJ LLC, we are committed to protecting your privacy and ensuring the securit
 ### Information You Provide
 We collect information you voluntarily provide when you:
 - Fill out our contact form
-- Subscribe to our newsletter
 - Request a consultation
 - Communicate with us via email or phone
 
@@ -75,7 +72,7 @@ You have the right to:
 - Opt-out of marketing communications
 - Withdraw consent at any time
 
-To exercise these rights, please contact us at privacy@dljllc.com.
+To exercise these rights, please contact us at contact@davidluengojuarez.com.
 
 ## Cookies and Tracking
 
@@ -119,9 +116,9 @@ We may update this Privacy Policy periodically. We will notify you of significan
 
 If you have questions about this Privacy Policy or our data practices, please contact us:
 
-**Email**: privacy@dljllc.com  
-**Phone**: (555) 123-4567  
-**Address**: [Your Business Address]  
+**Email**: contact@davidluengojuarez.com
+**Phone**: (307) 288-3104
+**Address**: 30 N Gould St Ste R Sheridan, WY 82801, United States
 
 ## Compliance
 
