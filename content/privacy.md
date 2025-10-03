@@ -6,7 +6,7 @@ date: 2025-10-03
 
 ## Our Commitment to Privacy
 
-At DLJ LLC, we are committed to protecting your privacy and ensuring the security of your personal information. This Privacy Policy explains how we collect, use, and safeguard your information when you visit our website or use our services.
+At DAVID LUENGO JUAREZ LLC, we are committed to protecting your privacy and ensuring the security of your personal information. This Privacy Policy explains how we collect, use, and safeguard your information when you visit our website or use our services.
 
 ## Information We Collect
 
