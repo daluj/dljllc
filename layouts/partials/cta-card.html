@@ -3,9 +3,9 @@ CTA Card Partial
 Usage: {{ partial "cta-card.html" (dict "title" "Your Title" "subtitle" "Your subtitle" "description" "Your description" "buttonText" "Button Text" "buttonLink" "/link" "icon" "🎓" "background" "bg-gray-50") }}
 */}}
 
-{{ $title := .title | default "Ready to Transform Your Operations?" }}
+{{ $title := .title | default "Ready to Free Your Time?" }}
 {{ $subtitle := .subtitle | default "" }}
-{{ $description := .description | default "No costs, no obligations, no annoying sales pitch. Guaranteed." }}
+{{ $description := .description | default "Book a Free 30 min call. No costs, no obligations, no annoying sales pitch. Guaranteed." }}
 {{ $buttonText := .buttonText | default "Book A Call" }}
 {{ $buttonLink := .buttonLink | default "/contact/" }}
 {{ $icon := .icon | default "" }}
