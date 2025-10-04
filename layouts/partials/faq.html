@@ -1,0 +1,106 @@
+<!-- FAQ Section -->
+<section class="py-20">
+  <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+    <div class="text-center mb-20">
+      <!-- Badge Design -->
+      <div class="inline-flex items-center px-6 py-3 bg-gray-100 rounded-full mb-8">
+        <span class="text-sm font-medium text-gray-600 uppercase tracking-wider">FAQ</span>
+      </div>
+      <!-- Centered Title -->
+      <h2 class="text-5xl md:text-6xl lg:text-7xl text-gray-900 mb-6 leading-tight"
+          :class="{ 'animate-fade-in': isVisible }">
+        Got Questions?
+      </h2>
+    </div>
+    
+    <div class="space-y-6" x-data="{ openFaq: null }">
+      <!-- FAQ Item 1 -->
+      <div class="bg-white rounded-2xl border border-gray-100 overflow-hidden">
+        <button @click="openFaq = openFaq === 1 ? null : 1" 
+                class="w-full px-8 py-6 text-left flex items-center justify-between hover:bg-gray-50 transition-colors duration-200">
+          <span class="text-lg font-medium text-gray-900">How quickly can you implement automation solutions?</span>
+          <svg class="h-5 w-5 text-gray-500 transform transition-transform duration-200" 
+               :class="{ 'rotate-180': openFaq === 1 }" 
+               fill="none" viewBox="0 0 24 24" stroke="currentColor">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
+          </svg>
+        </button>
+        <div x-show="openFaq === 1" 
+             x-transition:enter="transition ease-out duration-200"
+             x-transition:enter-start="opacity-0 transform -translate-y-2"
+             x-transition:enter-end="opacity-100 transform translate-y-0"
+             class="px-8 pb-6">
+          <p class="text-gray-600 font-light leading-relaxed">
+            Most automation solutions can be implemented within 2-4 weeks, depending on complexity. We start with a thorough analysis of your current processes and provide a detailed timeline during our initial consultation.
+          </p>
+        </div>
+      </div>
+      
+      <!-- FAQ Item 2 -->
+      <div class="bg-white rounded-2xl border border-gray-100 overflow-hidden">
+        <button @click="openFaq = openFaq === 2 ? null : 2" 
+                class="w-full px-8 py-6 text-left flex items-center justify-between hover:bg-gray-50 transition-colors duration-200">
+          <span class="text-lg font-medium text-gray-900">What industries do you specialize in?</span>
+          <svg class="h-5 w-5 text-gray-500 transform transition-transform duration-200" 
+               :class="{ 'rotate-180': openFaq === 2 }" 
+               fill="none" viewBox="0 0 24 24" stroke="currentColor">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
+          </svg>
+        </button>
+        <div x-show="openFaq === 2" 
+             x-transition:enter="transition ease-out duration-200"
+             x-transition:enter-start="opacity-0 transform -translate-y-2"
+             x-transition:enter-end="opacity-100 transform translate-y-0"
+             class="px-8 pb-6">
+          <p class="text-gray-600 font-light leading-relaxed">
+            We specialize in logistics, travel, restaurants, language education, and health industries. Our team has deep expertise in the unique challenges and requirements of these sectors.
+          </p>
+        </div>
+      </div>
+      
+      <!-- FAQ Item 3 -->
+      <div class="bg-white rounded-2xl border border-gray-100 overflow-hidden">
+        <button @click="openFaq = openFaq === 3 ? null : 3" 
+                class="w-full px-8 py-6 text-left flex items-center justify-between hover:bg-gray-50 transition-colors duration-200">
+          <span class="text-lg font-medium text-gray-900">Do you provide ongoing support after implementation?</span>
+          <svg class="h-5 w-5 text-gray-500 transform transition-transform duration-200" 
+               :class="{ 'rotate-180': openFaq === 3 }" 
+               fill="none" viewBox="0 0 24 24" stroke="currentColor">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
+          </svg>
+        </button>
+        <div x-show="openFaq === 3" 
+             x-transition:enter="transition ease-out duration-200"
+             x-transition:enter-start="opacity-0 transform -translate-y-2"
+             x-transition:enter-end="opacity-100 transform translate-y-0"
+             class="px-8 pb-6">
+          <p class="text-gray-600 font-light leading-relaxed">
+            Yes, we offer comprehensive ongoing support including maintenance, updates, training, and optimization. Our support packages are tailored to your specific needs and can include 24/7 monitoring.
+          </p>
+        </div>
+      </div>
+      
+      <!-- FAQ Item 4 -->
+      <div class="bg-white rounded-2xl border border-gray-100 overflow-hidden">
+        <button @click="openFaq = openFaq === 4 ? null : 4" 
+                class="w-full px-8 py-6 text-left flex items-center justify-between hover:bg-gray-50 transition-colors duration-200">
+          <span class="text-lg font-medium text-gray-900">What's the typical ROI for your automation solutions?</span>
+          <svg class="h-5 w-5 text-gray-500 transform transition-transform duration-200" 
+               :class="{ 'rotate-180': openFaq === 4 }" 
+               fill="none" viewBox="0 0 24 24" stroke="currentColor">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
+          </svg>
+        </button>
+        <div x-show="openFaq === 4" 
+             x-transition:enter="transition ease-out duration-200"
+             x-transition:enter-start="opacity-0 transform -translate-y-2"
+             x-transition:enter-end="opacity-100 transform translate-y-0"
+             class="px-8 pb-6">
+          <p class="text-gray-600 font-light leading-relaxed">
+            Our clients typically see a 20% reduction in operational costs within the first 30 days, with full ROI achieved within 6-12 months. The exact ROI depends on your current processes and the scope of automation implemented.
+          </p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
