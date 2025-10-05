@@ -32,7 +32,7 @@ languages:
     weight: 1
     title: 'DLJ Tech'
     params:
-      description: 'Built for local brick and mortar businesses.'
+      description: 'Built Smart & Simple, Grow Easy.'
   es:
     languageName: 'Español'
     weight: 2
