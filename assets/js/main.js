@@ -22,6 +22,8 @@ Alpine.data('contactForm', () => ({
   },
   isSubmitting: false,
   isSubmitted: false,
+  turnstileVerified: false,
+  turnstileToken: '',
   errors: {},
   
   validateEmail(email) {
@@ -69,6 +71,10 @@ Alpine.data('contactForm', () => ({
       this.errors.message = 'Message is required';
     }
     
+    if (!this.turnstileVerified || !this.turnstileToken) {
+      this.errors.turnstile = 'Please complete the security verification';
+    }
+    
     return Object.keys(this.errors).length === 0;
   },
   
@@ -78,11 +84,24 @@ Alpine.data('contactForm', () => ({
     this.isSubmitting = true;
     
     try {
+      // Prepare form data with Turnstile token
+      const formPayload = {
+        ...this.formData,
+        'cf-turnstile-response': this.turnstileToken
+      };
+      
       // Simulate form submission - replace with actual endpoint
       await new Promise(resolve => setTimeout(resolve, 1000));
       
       this.isSubmitted = true;
       this.formData = { name: '', email: '', phonePrefix: '+1', phone: '', company: '', message: '' };
+      this.turnstileVerified = false;
+      this.turnstileToken = '';
+      
+      // Reset Turnstile widget
+      if (window.turnstile) {
+        window.turnstile.reset();
+      }
       
       // Track form submission with Plausible
       if (window.plausible) {
@@ -94,6 +113,13 @@ Alpine.data('contactForm', () => ({
     } catch (error) {
       console.error('Form submission error:', error);
       this.errors.submit = 'Something went wrong. Please try again.';
+      
+      // Reset Turnstile widget on error
+      if (window.turnstile) {
+        window.turnstile.reset();
+        this.turnstileVerified = false;
+        this.turnstileToken = '';
+      }
     } finally {
       this.isSubmitting = false;
     }
@@ -142,6 +168,38 @@ Alpine.data('blogShare', () => ({
 // Initialize Alpine
 window.Alpine = Alpine;
 Alpine.start();
+
+// Turnstile callback functions
+window.onTurnstileCallback = function(token) {
+  // Find the Alpine component instance
+  const formElement = document.querySelector('[x-data="contactForm"]');
+  if (formElement && formElement._x_dataStack) {
+    const component = formElement._x_dataStack[0];
+    component.turnstileToken = token;
+    component.turnstileVerified = true;
+    component.errors.turnstile = '';
+  }
+};
+
+window.onTurnstileError = function() {
+  const formElement = document.querySelector('[x-data="contactForm"]');
+  if (formElement && formElement._x_dataStack) {
+    const component = formElement._x_dataStack[0];
+    component.turnstileVerified = false;
+    component.turnstileToken = '';
+    component.errors.turnstile = 'Security verification failed. Please try again.';
+  }
+};
+
+window.onTurnstileExpired = function() {
+  const formElement = document.querySelector('[x-data="contactForm"]');
+  if (formElement && formElement._x_dataStack) {
+    const component = formElement._x_dataStack[0];
+    component.turnstileVerified = false;
+    component.turnstileToken = '';
+    component.errors.turnstile = 'Security verification expired. Please verify again.';
+  }
+};
 
 // Additional utility functions
 window.trackEvent = function(eventName, props = {}) {
