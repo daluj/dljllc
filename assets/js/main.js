@@ -86,12 +86,28 @@ Alpine.data('contactForm', () => ({
     try {
       // Prepare form data with Turnstile token
       const formPayload = {
-        ...this.formData,
+        name: this.formData.name,
+        email: this.formData.email,
+        phone: `${this.formData.phonePrefix}${this.formData.phone}`,
+        company: this.formData.company,
+        message: this.formData.message,
         'cf-turnstile-response': this.turnstileToken
       };
       
-      // Simulate form submission - replace with actual endpoint
-      await new Promise(resolve => setTimeout(resolve, 1000));
+      // Submit form to backend API
+      const response = await fetch('https://app.davidluengojuarez.com/webhook/new-lead', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(formPayload)
+      });
+      
+      if (!response.ok) {
+        throw new Error(`HTTP error! status: ${response.status}`);
+      }
+      
+      const result = await response.json();
       
       this.isSubmitted = true;
       this.formData = { name: '', email: '', phonePrefix: '+1', phone: '', company: '', message: '' };
@@ -112,7 +128,15 @@ Alpine.data('contactForm', () => ({
       
     } catch (error) {
       console.error('Form submission error:', error);
-      this.errors.submit = 'Something went wrong. Please try again.';
+      
+      // Set appropriate error message based on error type
+      if (error.name === 'TypeError' && error.message.includes('fetch')) {
+        this.errors.submit = 'Network error. Please check your connection and try again.';
+      } else if (error.message.includes('HTTP error')) {
+        this.errors.submit = 'Server error. Please try again later.';
+      } else {
+        this.errors.submit = 'Something went wrong. Please try again.';
+      }
       
       // Reset Turnstile widget on error
       if (window.turnstile) {
