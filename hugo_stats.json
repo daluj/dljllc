@@ -307,6 +307,10 @@
       "z-50"
     ],
     "ids": [
+      "1-assessment-phase",
+      "2-implementation",
+      "3-results-verification",
+      "4-money-back-promise",
       "analytics-information",
       "automatically-collected-information",
       "benefits",
@@ -320,7 +324,9 @@
       "data-retention",
       "data-security",
       "email",
+      "get-started-risk-free",
       "healthcare",
+      "how-our-guarantee-works",
       "how-we-use-your-information",
       "industries-we-serve",
       "information-sharing",
@@ -334,14 +340,17 @@
       "name",
       "our-approach",
       "our-commitment-to-privacy",
+      "our-guarantee-promise",
       "phone",
       "restaurants--food-service",
       "services",
       "submit-btn",
       "third-party-links",
       "travel--hospitality",
+      "what-we-guarantee",
       "what-we-offer",
       "why-choose-our-industry-focus",
+      "why-we-can-make-this-guarantee",
       "your-rights"
     ]
   }
