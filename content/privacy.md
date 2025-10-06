@@ -117,7 +117,9 @@ We may update this Privacy Policy periodically. We will notify you of significan
 If you have questions about this Privacy Policy or our data practices, please contact us:
 
 **Email**: contact@davidluengojuarez.com
+<br>
 **Phone**: (307) 288-3104
+<br>
 **Address**: 30 N Gould St Ste R Sheridan, WY 82801, United States
 
 ## Compliance
