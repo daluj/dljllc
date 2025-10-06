@@ -18,7 +18,8 @@ Alpine.data('contactForm', () => ({
     phonePrefix: '+1',
     phone: '',
     company: '',
-    message: ''
+    message: '',
+    timeline: ''
   },
   isSubmitting: false,
   isSubmitted: false,
@@ -71,6 +72,10 @@ Alpine.data('contactForm', () => ({
       this.errors.message = 'Message is required';
     }
     
+    if (!this.formData.timeline) {
+      this.errors.timeline = 'Please select a timeline';
+    }
+    
     if (!this.turnstileVerified || !this.turnstileToken) {
       this.errors.turnstile = 'Please complete the security verification';
     }
@@ -91,6 +96,7 @@ Alpine.data('contactForm', () => ({
         phone: `${this.formData.phonePrefix}${this.formData.phone}`,
         company: this.formData.company,
         message: this.formData.message,
+        timeline: this.formData.timeline,
         'cf-turnstile-response': this.turnstileToken
       };
       
@@ -110,7 +116,7 @@ Alpine.data('contactForm', () => ({
       const result = await response.json();
       
       this.isSubmitted = true;
-      this.formData = { name: '', email: '', phonePrefix: '+1', phone: '', company: '', message: '' };
+      this.formData = { name: '', email: '', phonePrefix: '+1', phone: '', company: '', message: '', timeline: '' };
       this.turnstileVerified = false;
       this.turnstileToken = '';
       

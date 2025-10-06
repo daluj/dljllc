@@ -107,7 +107,7 @@
             <!-- Message Field -->
             <div>
               <label for="message" class="block text-sm font-medium text-gray-700 mb-2">
-                Tell us about your project *
+                What is the current problem you're experiencing? *
               </label>
               <textarea id="message" 
                         rows="4" 
@@ -116,6 +116,69 @@
                         :class="{ 'border-red-500 focus:border-red-500 focus:ring-red-500': errors.message }"
                         placeholder="Describe your current challenges and what you'd like to achieve..."></textarea>
               <p x-show="errors.message" x-text="errors.message" class="mt-1 text-sm text-red-600"></p>
+            </div>
+
+            <!-- Timeline Selection -->
+            <div>
+              <label class="block text-sm font-medium text-gray-700 mb-4">
+                By when do you want to solve this problem? *
+              </label>
+              <div class="grid grid-cols-1 sm:grid-cols-3 gap-3">
+                <!-- Today Option -->
+                <label class="relative flex items-center justify-center p-4 border-2 border-gray-200 rounded-lg cursor-pointer hover:border-blue-300 transition-colors duration-200"
+                       :class="{ 'border-blue-500 bg-blue-50': formData.timeline === 'today' }">
+                  <input type="radio" 
+                         name="timeline" 
+                         value="today"
+                         x-model="formData.timeline"
+                         class="sr-only">
+                  <div class="flex items-center">
+                    <div class="w-4 h-4 border-2 border-gray-300 rounded-full mr-3 flex items-center justify-center"
+                         :class="{ 'border-blue-500 bg-blue-500': formData.timeline === 'today' }">
+                      <div class="w-2 h-2 bg-white rounded-full"
+                           x-show="formData.timeline === 'today'"></div>
+                    </div>
+                    <span class="text-sm font-medium text-gray-900">Today</span>
+                  </div>
+                </label>
+
+                <!-- Tomorrow Option -->
+                <label class="relative flex items-center justify-center p-4 border-2 border-gray-200 rounded-lg cursor-pointer hover:border-blue-300 transition-colors duration-200"
+                       :class="{ 'border-blue-500 bg-blue-50': formData.timeline === 'tomorrow' }">
+                  <input type="radio" 
+                         name="timeline" 
+                         value="tomorrow"
+                         x-model="formData.timeline"
+                         class="sr-only">
+                  <div class="flex items-center">
+                    <div class="w-4 h-4 border-2 border-gray-300 rounded-full mr-3 flex items-center justify-center"
+                         :class="{ 'border-blue-500 bg-blue-500': formData.timeline === 'tomorrow' }">
+                      <div class="w-2 h-2 bg-white rounded-full"
+                           x-show="formData.timeline === 'tomorrow'"></div>
+                    </div>
+                    <span class="text-sm font-medium text-gray-900">Tomorrow</span>
+                  </div>
+                </label>
+
+                <!-- In a few weeks Option -->
+                <label class="relative flex items-center justify-center p-4 border-2 border-gray-200 rounded-lg cursor-pointer hover:border-blue-300 transition-colors duration-200"
+                       :class="{ 'border-blue-500 bg-blue-50': formData.timeline === 'few_weeks' }">
+                  <input type="radio" 
+                         name="timeline" 
+                         value="few_weeks"
+                         x-model="formData.timeline"
+                         class="sr-only">
+                  <div class="flex items-center">
+                    <div class="w-4 h-4 border-2 border-gray-300 rounded-full mr-3 flex items-center justify-center"
+                         :class="{ 'border-blue-500 bg-blue-500': formData.timeline === 'few_weeks' }">
+                      <div class="w-2 h-2 bg-white rounded-full"
+                           x-show="formData.timeline === 'few_weeks'"></div>
+                    </div>
+                    <span class="text-sm font-medium text-gray-900">In a few weeks</span>
+                  </div>
+                </label>
+              </div>
+              <p x-show="errors.timeline" x-text="errors.timeline" class="mt-1 text-sm text-red-600"></p>
             </div>
             
             <!-- Cloudflare Turnstile Widget -->
