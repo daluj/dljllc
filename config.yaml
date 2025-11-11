@@ -38,7 +38,7 @@ languages:
     weight: 2
     title: 'DLJ Tech'
     params:
-      description: 'Consultoría en IA y Automatización para logística, viajes, restaurantes, educación de idiomas y salud'
+      description: 'Consultoría en IA y Automatización'
 
 # Menu configuration
 # menu:
@@ -63,6 +63,8 @@ markup:
 
 # SEO and performance
 params:
+  # Logo path under static (e.g., /apple-touch-icon.png or /images/logo.png)
+  logo: '/logo.png'
   meta:
     author: 'DLJ LLC'
     description: 'Streamline your operations with AI-powered solutions. Expert consulting in automation, apps, and business tools.'
