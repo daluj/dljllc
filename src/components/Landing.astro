@@ -16,22 +16,48 @@ const schema = [
 ];
 ---
 <Base lang={lang} title={t.seo.title} description={t.seo.description} alternates={{ es: home('es'), en: home('en') }} schema={schema}>
+  <div class="promo">
+    <div class="wrap"><span>{t.promo.text}</span> <button type="button" class="promo-link" data-open-contact>{t.promo.link} →</button></div>
+  </div>
+
   <section class="hero">
-    <div class="wrap narrow center">
-      <h1>{t.hero.h1} <span class="accent">{t.hero.h1b}</span></h1>
-      <p class="lead">{t.hero.sub}</p>
-      <button type="button" class="btn btn-lg" data-open-contact>{t.hero.cta}</button>
-      <ul class="industries">
-        {t.cases.items.map((c) => <li><a href={caseUrl(lang, c.slug)}>{c.industry}</a></li>)}
-      </ul>
+    <div class="wrap hero-grid">
+      <div>
+        <h1>{t.hero.h1} <span class="accent">{t.hero.h1b}</span></h1>
+        <p class="lead">{t.hero.sub}</p>
+        <div class="cta-row">
+          <button type="button" class="btn btn-lg btn-cyan" data-open-contact>{t.hero.cta}</button>
+          <a class="btn btn-lg btn-ghost" href="#metodo">{t.hero.cta2}</a>
+        </div>
+        <p class="micro">{t.hero.microcopy}</p>
+      </div>
+      <aside class="hero-card" aria-label={t.plan.badge}>
+        <p class="badge">{t.plan.badge}</p>
+        <ul class="ticks">{t.hero.bullets.map((b) => <li>{b}</li>)}</ul>
+        <p class="hero-price"><small>{t.plan.from}</small> <b>${t.plan.price}</b> <small>{t.plan.unit}</small></p>
+      </aside>
     </div>
   </section>
 
-  <section class="sec alt" id="servicios">
+  <section class="sec" id="servicios">
     <div class="wrap">
       <h2 class="center">{t.services.h2}</h2>
       <div class="grid3">
-        {t.services.items.map((s) => (<div class="card"><h3>{s.t}</h3><p>{s.d}</p></div>))}
+        {t.services.items.map((s, i) => (<div class="card"><span class="ico" aria-hidden="true">{['↓', '↗', '✓'][i]}</span><h3>{s.t}</h3><p>{s.d}</p></div>))}
+      </div>
+    </div>
+  </section>
+
+  <section class="sec alt" id="oferta">
+    <div class="wrap narrow">
+      <h2 class="center">{t.plan.h2}</h2>
+      <div class="plan">
+        <p class="badge">{t.plan.badge}</p>
+        <h3>{t.plan.name}</h3>
+        <p class="price"><small>{t.plan.from}</small> <b>${t.plan.price}</b> <small>{t.plan.unit}</small></p>
+        <ul class="ticks">{t.plan.features.map((f) => <li>{f}</li>)}</ul>
+        <button type="button" class="btn btn-lg btn-block" data-open-contact>{t.plan.cta}</button>
+        <p class="micro">{t.plan.note}</p>
       </div>
     </div>
   </section>
@@ -45,7 +71,21 @@ const schema = [
     </div>
   </section>
 
-  <section class="sec alt" id="comparacion">
+  <section class="sec alt" id="casos">
+    <div class="wrap">
+      <h2 class="center">{t.cases.h2}</h2>
+      <p class="center muted">{t.cases.sub}</p>
+      <div class="grid3">
+        {t.cases.items.map((c) => (
+          <a class="card case" href={caseUrl(lang, c.slug)}>
+            <p class="tag">{c.industry}</p><h3>{c.title}</h3><span class="more">{t.cases.more} →</span>
+          </a>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <section class="sec" id="comparacion">
     <div class="wrap narrow">
       <h2 class="center">{t.compare.h2}</h2>
       <div class="compare">
@@ -55,7 +95,7 @@ const schema = [
     </div>
   </section>
 
-  <section class="sec" id="faq">
+  <section class="sec alt" id="faq">
     <div class="wrap narrow">
       <h2 class="center">{t.faq.h2}</h2>
       <div class="faq">
@@ -64,7 +104,7 @@ const schema = [
     </div>
   </section>
 
-  <section class="sec alt" id="sobre-mi">
+  <section class="sec" id="sobre-mi">
     <div class="wrap narrow center">
       <h2>{t.about.h2}</h2>
       <p>{t.about.text}</p>
@@ -72,11 +112,13 @@ const schema = [
     </div>
   </section>
 
-  <section class="sec final">
+  <section class="final">
     <div class="wrap narrow center">
       <h2>{t.cta.h2}</h2>
       <p class="lead">{t.cta.sub}</p>
-      <button type="button" class="btn btn-lg" data-open-contact>{t.cta.btn}</button>
+      <button type="button" class="btn btn-lg btn-cyan" data-open-contact>{t.cta.btn}</button>
     </div>
   </section>
+
+  <div class="sticky-cta"><button type="button" class="btn btn-block btn-cyan" data-open-contact>{t.hero.cta}</button></div>
 </Base>
