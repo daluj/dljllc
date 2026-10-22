@@ -4,177 +4,79 @@ import { COPY } from '../data/copy';
 import { SITE, home, caseUrl, type Lang } from '../data/site';
 const { lang } = Astro.props as { lang: Lang };
 const t = COPY[lang];
-const alternates = { es: home('es'), en: home('en') };
-
-const faqSchema = {
-  '@type': 'FAQPage',
-  '@id': `${new URL(home(lang), SITE.url).href}#faq`,
-  inLanguage: t.htmlLang,
-  mainEntity: t.faq.items.map((f) => ({ '@type': 'Question', name: f.q, acceptedAnswer: { '@type': 'Answer', text: f.a } })),
-};
-const offerSchema = {
-  '@type': 'Service',
-  name: lang === 'es' ? 'Prueba de automatización con IA de 30 días' : '30-day AI automation trial',
-  provider: { '@id': `${SITE.url}/#org` },
-  serviceType: 'AI and workflow automation consulting',
-  inLanguage: t.htmlLang,
-  areaServed: 'Worldwide',
-  offers: { '@type': 'Offer', price: '997', priceCurrency: 'USD', description: t.offer.priceNote },
-  hasOfferCatalog: {
-    '@type': 'OfferCatalog',
-    name: t.services.h2,
-    itemListElement: t.services.cards.map((c) => ({ '@type': 'Offer', itemOffered: { '@type': 'Service', name: c.title, description: c.text } })),
+const pageUrl = new URL(home(lang), SITE.url).href;
+const schema = [
+  { '@type': 'WebPage', '@id': `${pageUrl}#page`, url: pageUrl, name: t.seo.title, description: t.seo.description, inLanguage: t.htmlLang, about: { '@id': `${SITE.url}/#david` }, dateModified: SITE.modified },
+  {
+    '@type': 'Service', name: lang === 'es' ? 'Prueba de automatización con IA de 30 días' : '30-day AI automation trial',
+    provider: { '@id': `${SITE.url}/#org` }, serviceType: 'AI and workflow automation consulting', areaServed: 'Worldwide',
+    offers: { '@type': 'Offer', price: '997', priceCurrency: 'USD' },
   },
-};
-const webPage = {
-  '@type': 'WebPage',
-  '@id': `${new URL(home(lang), SITE.url).href}#page`,
-  url: new URL(home(lang), SITE.url).href,
-  name: t.seo.title,
-  description: t.seo.description,
-  inLanguage: t.htmlLang,
-  about: { '@id': `${SITE.url}/#david` },
-  dateModified: SITE.modified,
-};
+  { '@type': 'FAQPage', '@id': `${pageUrl}#faq`, inLanguage: t.htmlLang, mainEntity: t.faq.items.map((f) => ({ '@type': 'Question', name: f.q, acceptedAnswer: { '@type': 'Answer', text: f.a } })) },
+];
 ---
-<Base lang={lang} title={t.seo.title} description={t.seo.description} alternates={alternates} schema={[webPage, offerSchema, faqSchema]}>
+<Base lang={lang} title={t.seo.title} description={t.seo.description} alternates={{ es: home('es'), en: home('en') }} schema={schema}>
   <section class="hero">
-    <div class="wrap hero-in">
-      <p class="eyebrow">{t.hero.eyebrow}</p>
-      <h1>{t.hero.h1a} <span class="grad">{t.hero.h1b}</span></h1>
-      <p class="lead">{t.hero.audit}</p>
-      <div class="actions">
-        <button type="button" class="btn btn-lg" data-open-contact>{t.hero.cta}</button>
-        <a class="btn btn-ghost btn-lg" href="#casos">{t.hero.ctaSecondary}</a>
-      </div>
-      <ul class="trust">{t.hero.trust.map((x) => <li>{x}</li>)}</ul>
+    <div class="wrap narrow center">
+      <h1>{t.hero.h1} <span class="accent">{t.hero.h1b}</span></h1>
+      <p class="lead">{t.hero.sub}</p>
+      <button type="button" class="btn btn-lg" data-open-contact>{t.hero.cta}</button>
+      <ul class="industries">
+        {t.cases.items.map((c) => <li><a href={caseUrl(lang, c.slug)}>{c.industry}</a></li>)}
+      </ul>
     </div>
   </section>
 
-  <section class="strip" aria-label={t.industries.label}>
-    <div class="wrap strip-in">
-      <span>{t.industries.label}</span>
-      <ul>{t.industries.items.map((x) => <li>{x}</li>)}</ul>
-    </div>
-  </section>
-
-  <section class="sec" id="te-escucho">
-    <div class="wrap narrow">
-      <p class="eyebrow">{t.feels.eyebrow}</p>
-      <h2>{t.feels.h2}</h2>
-      <ul class="feels">{t.feels.items.map((x) => <li>{x}</li>)}</ul>
-      <div class="summary">
-        <p><strong>{t.feels.summaryLead}</strong> {t.feels.summary}</p>
-        <p class="ask">{t.feels.summaryAsk}</p>
-        <button type="button" class="btn" data-open-contact>{t.feels.summaryCta}</button>
-      </div>
-    </div>
-  </section>
-
-  <section class="sec alt" id="metodo">
+  <section class="sec alt" id="servicios">
     <div class="wrap">
-      <p class="eyebrow">{t.method.eyebrow}</p>
-      <h2>{t.method.h2}</h2>
-      <p class="lead">{t.method.lead}</p>
-      <ol class="steps">
-        {t.method.steps.map((s) => (
-          <li class="card">
-            <span class="num" aria-hidden="true">{s.n}</span>
-            <h3>{s.title}</h3>
-            <p>{s.text}</p>
-            <p class="q"><small>{t.method.askLabel}</small>“{s.ask}”</p>
-          </li>
-        ))}
+      <h2 class="center">{t.services.h2}</h2>
+      <div class="grid3">
+        {t.services.items.map((s) => (<div class="card"><h3>{s.t}</h3><p>{s.d}</p></div>))}
+      </div>
+    </div>
+  </section>
+
+  <section class="sec" id="metodo">
+    <div class="wrap">
+      <h2 class="center">{t.method.h2}</h2>
+      <ol class="grid3">
+        {t.method.steps.map((s, i) => (<li class="step"><span class="num" aria-hidden="true">{i + 1}</span><h3>{s.t}</h3><p>{s.d}</p></li>))}
       </ol>
     </div>
   </section>
 
-  <section class="sec" id="servicios">
-    <div class="wrap">
-      <p class="eyebrow">{t.services.eyebrow}</p>
-      <h2>{t.services.h2}</h2>
-      <div class="grid3">
-        {t.services.cards.map((c) => (
-          <article class="card">
-            <span class="ico" aria-hidden="true">{c.icon}</span>
-            <h3>{c.title}</h3>
-            <p>{c.text}</p>
-            <ul class="ticks">{c.points.map((p) => <li>{p}</li>)}</ul>
-          </article>
-        ))}
+  <section class="sec alt" id="comparacion">
+    <div class="wrap narrow">
+      <h2 class="center">{t.compare.h2}</h2>
+      <div class="compare">
+        <div class="card"><h3>{t.compare.othersH}</h3><ul class="list x">{t.compare.others.map((x) => <li>{x}</li>)}</ul></div>
+        <div class="card me"><h3>{t.compare.meH}</h3><ul class="list">{t.compare.me.map((x) => <li>{x}</li>)}</ul></div>
       </div>
-    </div>
-  </section>
-
-  <section class="sec alt" id="casos">
-    <div class="wrap">
-      <p class="eyebrow">{t.cases.eyebrow}</p>
-      <h2>{t.cases.h2}</h2>
-      <p class="lead">{t.cases.lead}</p>
-      <div class="grid3">
-        {t.cases.items.map((c) => (
-          <a class="card case" href={caseUrl(lang, c.slug)}>
-            <span class="tag">{c.industry}</span>
-            <h3>{c.title}</h3>
-            <p>{c.summary}</p>
-            <span class="more">{t.cases.read} →</span>
-          </a>
-        ))}
-      </div>
-      <p class="muted note">{t.cases.note}</p>
-    </div>
-  </section>
-
-  <section class="sec" id="oferta">
-    <div class="wrap offer">
-      <div>
-        <p class="eyebrow">{t.offer.eyebrow}</p>
-        <h2>{t.offer.h2}</h2>
-        <p class="lead">{t.offer.ask}</p>
-        <ul class="ticks">{t.offer.points.map((p) => <li>{p}</li>)}</ul>
-      </div>
-      <aside class="card price" aria-label={t.offer.h2}>
-        <p class="price-n">{t.offer.price}</p>
-        <p class="muted">{t.offer.priceNote}</p>
-        <button type="button" class="btn btn-lg" data-open-contact>{t.offer.cta}</button>
-        <p class="risk">{t.offer.risk}</p>
-      </aside>
-    </div>
-  </section>
-
-  <section class="sec alt" id="sobre-mi">
-    <div class="wrap about">
-      <div>
-        <p class="eyebrow">{t.about.eyebrow}</p>
-        <h2>{t.about.h2}</h2>
-        <p>{t.about.p1}</p>
-        <p>{t.about.p2}</p>
-        <p class="links">
-          <a href={SITE.linkedin} rel="me noopener" target="_blank">{t.about.linkedin} ↗</a>
-          <a href={SITE.github} rel="me noopener" target="_blank">{t.about.github} ↗</a>
-        </p>
-      </div>
-      <dl class="card facts" aria-label={t.about.factsH}>
-        {t.about.facts.map(([k, v]) => (<div><dt>{k}</dt><dd>{v}</dd></div>))}
-      </dl>
     </div>
   </section>
 
   <section class="sec" id="faq">
     <div class="wrap narrow">
-      <p class="eyebrow">{t.faq.eyebrow}</p>
-      <h2>{t.faq.h2}</h2>
+      <h2 class="center">{t.faq.h2}</h2>
       <div class="faq">
         {t.faq.items.map((f) => (<details><summary>{f.q}</summary><p>{f.a}</p></details>))}
       </div>
     </div>
   </section>
 
-  <section class="final">
+  <section class="sec alt" id="sobre-mi">
     <div class="wrap narrow center">
-      <h2>{t.final.h2}</h2>
-      <p class="lead">{t.final.text}</p>
-      <button type="button" class="btn btn-lg" data-open-contact>{t.final.cta}</button>
+      <h2>{t.about.h2}</h2>
+      <p>{t.about.text}</p>
+      <p class="links"><a href={SITE.linkedin} rel="me noopener" target="_blank">{t.about.linkedin}</a> <a href={SITE.github} rel="me noopener" target="_blank">{t.about.github}</a></p>
+    </div>
+  </section>
+
+  <section class="sec final">
+    <div class="wrap narrow center">
+      <h2>{t.cta.h2}</h2>
+      <p class="lead">{t.cta.sub}</p>
+      <button type="button" class="btn btn-lg" data-open-contact>{t.cta.btn}</button>
     </div>
   </section>
 </Base>

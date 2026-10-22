@@ -26,7 +26,7 @@ const schema = [
   {
     '@type': 'BreadcrumbList',
     itemListElement: [
-      { '@type': 'ListItem', position: 1, name: t.nav.cases, item: new URL(home(lang) + '#casos', SITE.url).href },
+      { '@type': 'ListItem', position: 1, name: t.nav.home, item: new URL(home(lang), SITE.url).href },
       { '@type': 'ListItem', position: 2, name: c.industry, item: url },
     ],
   },
@@ -35,34 +35,21 @@ const schema = [
 <Base lang={lang} title={title} description={c.seo} alternates={alternates} schema={schema} type="article">
   <article class="sec">
     <div class="wrap narrow case-page">
-      <nav class="crumbs" aria-label="Breadcrumb"><a href={`${home(lang)}#casos`}>← {t.cases.back}</a></nav>
-      <span class="tag">{c.industry}</span>
+      <p><a class="back" href={home(lang)}>← {t.cases.back}</a></p>
+      <p class="tag">{c.industry}</p>
       <h1>{c.title}</h1>
-      <p class="lead">{c.summary}</p>
-
-      <h2>{t.cases.feelsH}</h2>
-      <ul class="feels">{c.feels.map((x) => <li>{x}</li>)}</ul>
+      <p class="lead">{c.problem}</p>
 
       <h2>{t.cases.buildH}</h2>
-      <ol class="steps stack">
-        {c.build.map((b, i) => (<li class="card"><span class="num" aria-hidden="true">{i + 1}</span><h3>{b.title}</h3><p>{b.text}</p></li>))}
-      </ol>
-
-      <h2>{t.cases.changeH}</h2>
-      <ul class="ticks">{c.change.map((x) => <li>{x}</li>)}</ul>
+      <ul class="list">{c.build.map((x) => <li>{x}</li>)}</ul>
 
       <h2>{t.cases.measureH}</h2>
-      <ul class="ticks">{c.measure.map((x) => <li>{x}</li>)}</ul>
+      <ul class="list">{c.measure.map((x) => <li>{x}</li>)}</ul>
 
-      <h2>{t.cases.stackH}</h2>
-      <p>{c.stack}</p>
+      <p class="muted small">{t.cases.note}</p>
 
-      <p class="muted note">{t.cases.note}</p>
-
-      <div class="card cta-box">
+      <div class="card center cta-box">
         <h2>{t.cases.ctaH}</h2>
-        <p>{t.cases.ctaText}</p>
-        <p class="q"><small>{t.cases.askH}</small>“{c.ask}”</p>
         <button type="button" class="btn btn-lg" data-open-contact>{t.hero.cta}</button>
       </div>
     </div>
