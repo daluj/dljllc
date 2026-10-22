@@ -10,7 +10,17 @@ const es = {
     description: 'Automatizo las tareas repetitivas de tu negocio con IA y herramientas a medida. Prueba de 30 días, sin permanencia y con garantía de devolución.',
   },
   nav: { cta: 'Contacto', switch: 'English', switchLabel: 'Read this site in English', home: 'Inicio', skip: 'Saltar al contenido' },
-  promo: { text: 'Prueba de 30 días con garantía de devolución · Sin permanencia', link: 'Reservar llamada' },
+  wa: { cta: 'Escríbeme por WhatsApp', msg: 'Hola David, me gustaría saber más sobre la prueba de 30 días.', or: 'o prefieres', form: 'rellenar el formulario' },
+  promo: { text: 'Prueba de 30 días con garantía de devolución · Sin permanencia', link: 'Escríbeme' },
+  mock: {
+    h2: 'Así podría verse en tu negocio', sub: 'Ilustraciones de ejemplo, no capturas de clientes.', tag: 'Ejemplo ilustrativo',
+    items: [
+      { t: 'Bandeja única', d: 'Todas las consultas en un sitio, con respuesta inmediata.', lines: ['Nueva consulta · WhatsApp', 'Respuesta enviada en 1 min', 'Seguimiento programado'] },
+      { t: 'Cotización en minutos', d: 'Datos leídos de correos y PDFs, sin copiar y pegar.', lines: ['Origen: Valencia', 'Destino: Lyon', 'Presupuesto listo ✓'] },
+      { t: 'Agenda y recordatorios', d: 'Menos ausencias sin aviso y menos llamadas.', lines: ['Mar 10:00 · Confirmada', 'Mié 12:30 · Recordatorio', 'Jue 16:00 · Libre'] },
+    ],
+  },
+  stats: { h2: 'Resultados reales' },
   hero: {
     h1: 'Recupera tu tiempo.',
     h1b: 'En 30 días, o te devuelvo el dinero.',
@@ -96,6 +106,7 @@ const es = {
       ['Responsable', 'David Luengo Juarez LLC (DLJ Tech). Contacto a través del formulario de esta web.'],
       ['Datos que recogemos', 'Los que nos facilitas en el formulario de contacto (nombre, correo, empresa y mensaje). El formulario está alojado en Tally (tally.so), que actúa como encargado del tratamiento.'],
       ['Analítica', 'Usamos analítica sin cookies y sin datos personales; solo estadísticas agregadas.'],
+      ['WhatsApp', 'Si nos escribes por WhatsApp, tu número y mensaje se tratan a través de WhatsApp (Meta) solo para responderte.'],
       ['Uso', 'Para responder a tu consulta y, si lo deseas, enviarte una propuesta. No vendemos tus datos.'],
       ['Tus derechos', 'Puedes pedir acceso, rectificación o eliminación de tus datos escribiéndonos a través del formulario.'],
     ] as [string, string][],
@@ -111,7 +122,17 @@ const en: typeof es = {
     description: 'I automate the repetitive work in your business with AI and custom tools. 30-day trial, no lock-in, money-back guarantee.',
   },
   nav: { cta: 'Contact', switch: 'Español', switchLabel: 'Leer esta web en español', home: 'Home', skip: 'Skip to content' },
-  promo: { text: '30-day trial with a money-back guarantee · No lock-in', link: 'Book a call' },
+  wa: { cta: 'Message me on WhatsApp', msg: "Hi David, I'd like to know more about the 30-day trial.", or: 'or you can', form: 'fill in the form' },
+  promo: { text: '30-day trial with a money-back guarantee · No lock-in', link: 'Message me' },
+  mock: {
+    h2: 'What it could look like in your business', sub: 'Illustrative examples, not client screenshots.', tag: 'Illustrative example',
+    items: [
+      { t: 'One inbox', d: 'Every enquiry in one place, with instant replies.', lines: ['New enquiry · WhatsApp', 'Reply sent in 1 min', 'Follow-up scheduled'] },
+      { t: 'Quotes in minutes', d: 'Data read from emails and PDFs, no copy-paste.', lines: ['From: Valencia', 'To: Lyon', 'Quote ready ✓'] },
+      { t: 'Scheduling and reminders', d: 'Fewer no-shows and fewer phone calls.', lines: ['Tue 10:00 · Confirmed', 'Wed 12:30 · Reminder', 'Thu 16:00 · Free'] },
+    ],
+  },
+  stats: { h2: 'Real results' },
   hero: {
     h1: 'Get your time back.',
     h1b: 'In 30 days, or your money back.',
@@ -197,6 +218,7 @@ const en: typeof es = {
       ['Controller', 'David Luengo Juarez LLC (DLJ Tech). Contact through the form on this site.'],
       ['Data we collect', 'What you provide in the contact form (name, email, company and message). The form is hosted by Tally (tally.so), which acts as a data processor.'],
       ['Analytics', 'We use cookie-free analytics with no personal data; aggregate statistics only.'],
+      ['WhatsApp', 'If you message us on WhatsApp, your number and message are handled through WhatsApp (Meta) only to reply to you.'],
       ['Use', 'To reply to your enquiry and, if you wish, send a proposal. We do not sell your data.'],
       ['Your rights', 'You can request access, correction or deletion of your data by writing to us through the form.'],
     ],

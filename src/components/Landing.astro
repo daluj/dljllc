@@ -1,9 +1,23 @@
 ---
 import Base from '../layouts/Base.astro';
 import { COPY } from '../data/copy';
-import { SITE, home, caseUrl, type Lang } from '../data/site';
+import { SITE, home, caseUrl, waUrl, type Lang } from '../data/site';
 const { lang } = Astro.props as { lang: Lang };
 const t = COPY[lang];
+const wa = waUrl(t.wa.msg);
+const stats = SITE.stats[lang];
+const icons: Record<string, string> = {
+  logistica: 'M3 7h11v9H3zM14 10h4l3 3v3h-7M7 19a1.5 1.5 0 100-3 1.5 1.5 0 000 3zM17 19a1.5 1.5 0 100-3 1.5 1.5 0 000 3z',
+  viajes: 'M2 14l20-8-6 14-4-5-4 3 1-5z',
+  restaurantes: 'M6 3v8M9 3v8M6 7h3M7.5 11v10M17 3c-2 2-2 6 0 8v10',
+  'educacion-idiomas': 'M4 5h16v11H9l-5 4zM8 9h8M8 12h5',
+  salud: 'M12 21s-8-5-8-11a4.5 4.5 0 018-2.5A4.5 4.5 0 0120 10c0 6-8 11-8 11z',
+  logistics: 'M3 7h11v9H3zM14 10h4l3 3v3h-7M7 19a1.5 1.5 0 100-3 1.5 1.5 0 000 3zM17 19a1.5 1.5 0 100-3 1.5 1.5 0 000 3z',
+  travel: 'M2 14l20-8-6 14-4-5-4 3 1-5z',
+  restaurants: 'M6 3v8M9 3v8M6 7h3M7.5 11v10M17 3c-2 2-2 6 0 8v10',
+  'language-education': 'M4 5h16v11H9l-5 4zM8 9h8M8 12h5',
+  health: 'M12 21s-8-5-8-11a4.5 4.5 0 018-2.5A4.5 4.5 0 0120 10c0 6-8 11-8 11z',
+};
 const pageUrl = new URL(home(lang), SITE.url).href;
 const schema = [
   { '@type': 'WebPage', '@id': `${pageUrl}#page`, url: pageUrl, name: t.seo.title, description: t.seo.description, inLanguage: t.htmlLang, about: { '@id': `${SITE.url}/#david` }, dateModified: SITE.modified },
@@ -17,67 +31,95 @@ const schema = [
 ---
 <Base lang={lang} title={t.seo.title} description={t.seo.description} alternates={{ es: home('es'), en: home('en') }} schema={schema}>
   <div class="promo">
-    <div class="wrap"><span>{t.promo.text}</span> <button type="button" class="promo-link" data-open-contact>{t.promo.link} →</button></div>
+    <div class="wrap"><span>{t.promo.text}</span> <a class="promo-link" href={wa} target="_blank" rel="noopener">{t.promo.link} →</a></div>
   </div>
 
   <section class="hero">
     <div class="wrap hero-grid">
-      <div>
+      <div class="hero-text">
         <h1>{t.hero.h1} <span class="accent">{t.hero.h1b}</span></h1>
         <p class="lead">{t.hero.sub}</p>
         <div class="cta-row">
-          <button type="button" class="btn btn-lg btn-cyan" data-open-contact>{t.hero.cta}</button>
+          <a class="btn btn-lg btn-wa" href={wa} target="_blank" rel="noopener"><svg class="wa-ico" viewBox="0 0 24 24" aria-hidden="true"><path d="M4 5h16v11H9l-5 4zM8 9h8M8 12h5"/></svg>{t.wa.cta}</a>
           <a class="btn btn-lg btn-ghost" href="#metodo">{t.hero.cta2}</a>
         </div>
         <p class="micro">{t.hero.microcopy}</p>
+        <ul class="chips">{t.hero.bullets.map((b) => <li>{b}</li>)}</ul>
       </div>
-      <aside class="hero-card" aria-label={t.plan.badge}>
-        <p class="badge">{t.plan.badge}</p>
-        <ul class="ticks">{t.hero.bullets.map((b) => <li>{b}</li>)}</ul>
-        <p class="hero-price"><small>{t.plan.from}</small> <b>${t.plan.price}</b> <small>{t.plan.unit}</small></p>
-      </aside>
+      <div class="portrait" aria-hidden={SITE.photo ? undefined : 'true'}>
+        {SITE.photo ? <img src={SITE.photo} alt={SITE.person} width="480" height="560" fetchpriority="high" /> : <span class="initials">DLJ</span>}
+        <p class="portrait-tag">{SITE.person}</p>
+      </div>
     </div>
   </section>
+
+  {stats.length > 0 && (
+    <section class="stats">
+      <div class="wrap">
+        <h2 class="sr-only">{t.stats.h2}</h2>
+        <ul class="stat-row">{stats.map((x) => <li class="reveal"><b>{x.v}</b><span>{x.l}</span></li>)}</ul>
+      </div>
+    </section>
+  )}
 
   <section class="sec" id="servicios">
     <div class="wrap">
-      <h2 class="center">{t.services.h2}</h2>
+      <h2 class="center reveal">{t.services.h2}</h2>
       <div class="grid3">
-        {t.services.items.map((s, i) => (<div class="card"><span class="ico" aria-hidden="true">{['↓', '↗', '✓'][i]}</span><h3>{s.t}</h3><p>{s.d}</p></div>))}
+        {t.services.items.map((s, i) => (<div class="card reveal"><span class="ico" aria-hidden="true">{['↓', '↗', '✓'][i]}</span><h3>{s.t}</h3><p>{s.d}</p></div>))}
       </div>
     </div>
   </section>
 
-  <section class="sec alt" id="oferta">
+  <section class="sec alt" id="mockups">
+    <div class="wrap">
+      <h2 class="center reveal">{t.mock.h2}</h2>
+      <p class="center muted">{t.mock.sub}</p>
+      <div class="grid3">
+        {t.mock.items.map((m) => (
+          <figure class="mock reveal">
+            <div class="screen" role="img" aria-label={`${t.mock.tag}: ${m.t}`}>
+              <i class="dots"></i>
+              {m.lines.map((l) => <span class="row">{l}</span>)}
+            </div>
+            <figcaption><b>{m.t}</b><span>{m.d}</span><em>{t.mock.tag}</em></figcaption>
+          </figure>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <section class="sec" id="oferta">
     <div class="wrap narrow">
-      <h2 class="center">{t.plan.h2}</h2>
-      <div class="plan">
+      <h2 class="center reveal">{t.plan.h2}</h2>
+      <div class="plan reveal">
         <p class="badge">{t.plan.badge}</p>
         <h3>{t.plan.name}</h3>
         <p class="price"><small>{t.plan.from}</small> <b>${t.plan.price}</b> <small>{t.plan.unit}</small></p>
         <ul class="ticks">{t.plan.features.map((f) => <li>{f}</li>)}</ul>
-        <button type="button" class="btn btn-lg btn-block" data-open-contact>{t.plan.cta}</button>
+        <a class="btn btn-lg btn-wa btn-block" href={wa} target="_blank" rel="noopener">{t.plan.cta}</a>
         <p class="micro">{t.plan.note}</p>
       </div>
     </div>
   </section>
 
-  <section class="sec" id="metodo">
+  <section class="sec alt" id="metodo">
     <div class="wrap">
-      <h2 class="center">{t.method.h2}</h2>
+      <h2 class="center reveal">{t.method.h2}</h2>
       <ol class="grid3">
-        {t.method.steps.map((s, i) => (<li class="step"><span class="num" aria-hidden="true">{i + 1}</span><h3>{s.t}</h3><p>{s.d}</p></li>))}
+        {t.method.steps.map((s, i) => (<li class="step reveal"><span class="num" aria-hidden="true">{i + 1}</span><h3>{s.t}</h3><p>{s.d}</p></li>))}
       </ol>
     </div>
   </section>
 
-  <section class="sec alt" id="casos">
+  <section class="sec" id="casos">
     <div class="wrap">
-      <h2 class="center">{t.cases.h2}</h2>
+      <h2 class="center reveal">{t.cases.h2}</h2>
       <p class="center muted">{t.cases.sub}</p>
       <div class="grid3 cases">
         {t.cases.items.map((c) => (
-          <a class="card case" href={caseUrl(lang, c.slug)}>
+          <a class="card case reveal" href={caseUrl(lang, c.slug)}>
+            <svg class="sector" viewBox="0 0 24 24" aria-hidden="true"><path d={icons[c.slug]} /></svg>
             <p class="tag">{c.industry}</p><h3>{c.title}</h3><span class="more">{t.cases.more} →</span>
           </a>
         ))}
@@ -85,27 +127,27 @@ const schema = [
     </div>
   </section>
 
-  <section class="sec" id="comparacion">
+  <section class="sec alt" id="comparacion">
     <div class="wrap narrow">
-      <h2 class="center">{t.compare.h2}</h2>
+      <h2 class="center reveal">{t.compare.h2}</h2>
       <div class="compare">
-        <div class="card"><h3>{t.compare.othersH}</h3><ul class="list x">{t.compare.others.map((x) => <li>{x}</li>)}</ul></div>
-        <div class="card me"><h3>{t.compare.meH}</h3><ul class="list">{t.compare.me.map((x) => <li>{x}</li>)}</ul></div>
+        <div class="card reveal"><h3>{t.compare.othersH}</h3><ul class="list x">{t.compare.others.map((x) => <li>{x}</li>)}</ul></div>
+        <div class="card me reveal"><h3>{t.compare.meH}</h3><ul class="list">{t.compare.me.map((x) => <li>{x}</li>)}</ul></div>
       </div>
     </div>
   </section>
 
-  <section class="sec alt" id="faq">
+  <section class="sec" id="faq">
     <div class="wrap narrow">
-      <h2 class="center">{t.faq.h2}</h2>
+      <h2 class="center reveal">{t.faq.h2}</h2>
       <div class="faq">
         {t.faq.items.map((f) => (<details><summary>{f.q}</summary><p>{f.a}</p></details>))}
       </div>
     </div>
   </section>
 
-  <section class="sec" id="sobre-mi">
-    <div class="wrap narrow center">
+  <section class="sec alt" id="sobre-mi">
+    <div class="wrap narrow center reveal">
       <h2>{t.about.h2}</h2>
       <p>{t.about.text}</p>
       <p class="links"><a href={SITE.linkedin} rel="me noopener" target="_blank">{t.about.linkedin}</a> <a href={SITE.github} rel="me noopener" target="_blank">{t.about.github}</a></p>
@@ -113,12 +155,25 @@ const schema = [
   </section>
 
   <section class="final">
-    <div class="wrap narrow center">
+    <div class="wrap narrow center reveal">
       <h2>{t.cta.h2}</h2>
       <p class="lead">{t.cta.sub}</p>
-      <button type="button" class="btn btn-lg btn-cyan" data-open-contact>{t.cta.btn}</button>
+      <a class="btn btn-lg btn-wa" href={wa} target="_blank" rel="noopener">{t.wa.cta}</a>
+      <p class="micro">{t.wa.or} <button type="button" class="linkbtn" data-open-contact>{t.wa.form}</button></p>
     </div>
   </section>
 
-  <div class="sticky-cta"><button type="button" class="btn btn-block btn-cyan" data-open-contact>{t.hero.cta}</button></div>
+  <div class="sticky-cta"><a class="btn btn-block btn-wa" href={wa} target="_blank" rel="noopener">{t.wa.cta}</a></div>
+
+  <script is:inline>
+    (function () {
+      var els = document.querySelectorAll('.reveal');
+      if (!('IntersectionObserver' in window) || matchMedia('(prefers-reduced-motion:reduce)').matches) return;
+      document.documentElement.classList.add('js-reveal');
+      var io = new IntersectionObserver(function (es) {
+        es.forEach(function (e) { if (e.isIntersecting) { e.target.classList.add('in'); io.unobserve(e.target); } });
+      }, { threshold: 0.12 });
+      els.forEach(function (el) { io.observe(el); });
+    })();
+  </script>
 </Base>

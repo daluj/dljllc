@@ -1,6 +1,6 @@
 ---
 import { COPY } from '../data/copy';
-import { SITE, home, privacyUrl, type Lang } from '../data/site';
+import { SITE, home, privacyUrl, waUrl, type Lang } from '../data/site';
 import ContactModal from '../components/ContactModal.astro';
 import '../styles/global.css';
 
@@ -93,7 +93,7 @@ const graph = { '@context': 'https://schema.org', '@graph': [org, person, ...sch
         </a>
         <div class="bar-end">
           <a class="lang" href={alternates[other]} hreflang={other} lang={other} aria-label={t.nav.switchLabel}>{t.nav.switch}</a>
-          <button type="button" class="btn btn-sm" data-open-contact>{t.nav.cta}</button>
+          <a class="btn btn-sm btn-wa" href={waUrl(t.wa.msg)} target="_blank" rel="noopener">{t.nav.cta}</a>
         </div>
       </div>
     </header>
