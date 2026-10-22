@@ -1,0 +1,70 @@
+---
+import Base from '../layouts/Base.astro';
+import { COPY } from '../data/copy';
+import { SITE, home, caseUrl, type Lang } from '../data/site';
+const { lang, slug } = Astro.props as { lang: Lang; slug: string };
+const t = COPY[lang];
+const idx = t.cases.items.findIndex((c) => c.slug === slug);
+const c = t.cases.items[idx];
+const alternates = { es: caseUrl('es', COPY.es.cases.items[idx].slug), en: caseUrl('en', COPY.en.cases.items[idx].slug) };
+const url = new URL(alternates[lang], SITE.url).href;
+const title = `${c.title} · ${c.industry} | ${SITE.brand}`;
+const schema = [
+  {
+    '@type': 'Article',
+    '@id': `${url}#article`,
+    headline: c.title,
+    description: c.seo,
+    inLanguage: t.htmlLang,
+    author: { '@id': `${SITE.url}/#david` },
+    publisher: { '@id': `${SITE.url}/#org` },
+    mainEntityOfPage: url,
+    dateModified: SITE.modified,
+    datePublished: SITE.modified,
+    about: c.industry,
+  },
+  {
+    '@type': 'BreadcrumbList',
+    itemListElement: [
+      { '@type': 'ListItem', position: 1, name: t.nav.cases, item: new URL(home(lang) + '#casos', SITE.url).href },
+      { '@type': 'ListItem', position: 2, name: c.industry, item: url },
+    ],
+  },
+];
+---
+<Base lang={lang} title={title} description={c.seo} alternates={alternates} schema={schema} type="article">
+  <article class="sec">
+    <div class="wrap narrow case-page">
+      <nav class="crumbs" aria-label="Breadcrumb"><a href={`${home(lang)}#casos`}>← {t.cases.back}</a></nav>
+      <span class="tag">{c.industry}</span>
+      <h1>{c.title}</h1>
+      <p class="lead">{c.summary}</p>
+
+      <h2>{t.cases.feelsH}</h2>
+      <ul class="feels">{c.feels.map((x) => <li>{x}</li>)}</ul>
+
+      <h2>{t.cases.buildH}</h2>
+      <ol class="steps stack">
+        {c.build.map((b, i) => (<li class="card"><span class="num" aria-hidden="true">{i + 1}</span><h3>{b.title}</h3><p>{b.text}</p></li>))}
+      </ol>
+
+      <h2>{t.cases.changeH}</h2>
+      <ul class="ticks">{c.change.map((x) => <li>{x}</li>)}</ul>
+
+      <h2>{t.cases.measureH}</h2>
+      <ul class="ticks">{c.measure.map((x) => <li>{x}</li>)}</ul>
+
+      <h2>{t.cases.stackH}</h2>
+      <p>{c.stack}</p>
+
+      <p class="muted note">{t.cases.note}</p>
+
+      <div class="card cta-box">
+        <h2>{t.cases.ctaH}</h2>
+        <p>{t.cases.ctaText}</p>
+        <p class="q"><small>{t.cases.askH}</small>“{c.ask}”</p>
+        <button type="button" class="btn btn-lg" data-open-contact>{t.hero.cta}</button>
+      </div>
+    </div>
+  </article>
+</Base>
