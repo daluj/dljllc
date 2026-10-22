@@ -75,7 +75,7 @@ const schema = [
     <div class="wrap">
       <h2 class="center">{t.cases.h2}</h2>
       <p class="center muted">{t.cases.sub}</p>
-      <div class="grid3">
+      <div class="grid3 cases">
         {t.cases.items.map((c) => (
           <a class="card case" href={caseUrl(lang, c.slug)}>
             <p class="tag">{c.industry}</p><h3>{c.title}</h3><span class="more">{t.cases.more} →</span>
