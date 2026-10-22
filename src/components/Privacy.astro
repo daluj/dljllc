@@ -1,0 +1,14 @@
+---
+import Base from '../layouts/Base.astro';
+import { COPY } from '../data/copy';
+import { privacyUrl, type Lang } from '../data/site';
+const { lang } = Astro.props as { lang: Lang };
+const p = COPY[lang].privacy;
+---
+<Base lang={lang} title={`${p.title} | DLJ Tech`} description={p.description} alternates={{ es: privacyUrl('es'), en: privacyUrl('en') }}>
+  <article class="sec"><div class="wrap narrow case-page">
+    <h1>{p.title}</h1>
+    <p class="muted">{p.updated}</p>
+    {p.sections.map(([h, b]) => (<><h2>{h}</h2><p>{b}</p></>))}
+  </div></article>
+</Base>

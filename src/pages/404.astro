@@ -1,0 +1,11 @@
+---
+import Base from '../layouts/Base.astro';
+import { COPY } from '../data/copy';
+const t = COPY.es.notFound;
+---
+<Base lang="es" title={`${t.title} | DLJ Tech`} description={t.title} alternates={{ es: '/', en: '/en/' }} noindex>
+  <section class="sec"><div class="wrap narrow center">
+    <h1>404</h1>
+    <p><a class="btn" href="/">{t.cta}</a> <a class="btn btn-ghost" href="/en/">Back to English home</a></p>
+  </div></section>
+</Base>

@@ -1,33 +1,17 @@
 {
-  "name": "dljllc-website",
-  "version": "1.0.0",
-  "description": "Minimalist tech consulting website built with Hugo, Tailwind CSS, and Alpine.js",
-  "main": "index.js",
+  "name": "dlj-tech-website",
+  "version": "2.0.0",
+  "private": true,
+  "type": "module",
+  "description": "Bilingual (ES/EN) static landing page and portfolio for David Luengo Juárez / DLJ Tech",
   "scripts": {
-    "dev": "hugo server -D --bind 0.0.0.0",
-    "build": "hugo --minify",
-    "build-css": "tailwindcss -i ./assets/css/input.css -o ./assets/css/output.css --watch",
-    "preview": "hugo server --bind 0.0.0.0"
-  },
-  "keywords": [
-    "hugo",
-    "tailwindcss",
-    "alpinejs",
-    "consulting",
-    "ai",
-    "automation"
-  ],
-  "author": "DLJ LLC",
-  "license": "MIT",
-  "devDependencies": {
-    "@tailwindcss/forms": "^0.5.7",
-    "@tailwindcss/typography": "^0.5.10",
-    "autoprefixer": "^10.4.16",
-    "postcss": "^8.4.32",
-    "postcss-cli": "^11.0.0",
-    "tailwindcss": "^3.3.6"
+    "dev": "astro dev --host",
+    "build": "astro build",
+    "preview": "astro preview --host"
   },
   "dependencies": {
-    "alpinejs": "^3.13.3"
-  }
+    "@astrojs/sitemap": "^3.6.0",
+    "astro": "^5.14.0"
+  },
+  "engines": { "node": ">=20" }
 }

@@ -1,0 +1,9 @@
+---
+import CaseStudy from '../../components/CaseStudy.astro';
+import { COPY } from '../../data/copy';
+export function getStaticPaths() {
+  return COPY.es.cases.items.map((c) => ({ params: { slug: c.slug } }));
+}
+const { slug } = Astro.params;
+---
+<CaseStudy lang="es" slug={slug!} />

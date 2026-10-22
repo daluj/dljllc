@@ -1,0 +1,82 @@
+---
+import Base from '../layouts/Base.astro';
+import { COPY } from '../data/copy';
+import { SITE, home, caseUrl, type Lang } from '../data/site';
+const { lang } = Astro.props as { lang: Lang };
+const t = COPY[lang];
+const pageUrl = new URL(home(lang), SITE.url).href;
+const schema = [
+  { '@type': 'WebPage', '@id': `${pageUrl}#page`, url: pageUrl, name: t.seo.title, description: t.seo.description, inLanguage: t.htmlLang, about: { '@id': `${SITE.url}/#david` }, dateModified: SITE.modified },
+  {
+    '@type': 'Service', name: lang === 'es' ? 'Prueba de automatización con IA de 30 días' : '30-day AI automation trial',
+    provider: { '@id': `${SITE.url}/#org` }, serviceType: 'AI and workflow automation consulting', areaServed: 'Worldwide',
+    offers: { '@type': 'Offer', price: '997', priceCurrency: 'USD' },
+  },
+  { '@type': 'FAQPage', '@id': `${pageUrl}#faq`, inLanguage: t.htmlLang, mainEntity: t.faq.items.map((f) => ({ '@type': 'Question', name: f.q, acceptedAnswer: { '@type': 'Answer', text: f.a } })) },
+];
+---
+<Base lang={lang} title={t.seo.title} description={t.seo.description} alternates={{ es: home('es'), en: home('en') }} schema={schema}>
+  <section class="hero">
+    <div class="wrap narrow center">
+      <h1>{t.hero.h1} <span class="accent">{t.hero.h1b}</span></h1>
+      <p class="lead">{t.hero.sub}</p>
+      <button type="button" class="btn btn-lg" data-open-contact>{t.hero.cta}</button>
+      <ul class="industries">
+        {t.cases.items.map((c) => <li><a href={caseUrl(lang, c.slug)}>{c.industry}</a></li>)}
+      </ul>
+    </div>
+  </section>
+
+  <section class="sec alt" id="servicios">
+    <div class="wrap">
+      <h2 class="center">{t.services.h2}</h2>
+      <div class="grid3">
+        {t.services.items.map((s) => (<div class="card"><h3>{s.t}</h3><p>{s.d}</p></div>))}
+      </div>
+    </div>
+  </section>
+
+  <section class="sec" id="metodo">
+    <div class="wrap">
+      <h2 class="center">{t.method.h2}</h2>
+      <ol class="grid3">
+        {t.method.steps.map((s, i) => (<li class="step"><span class="num" aria-hidden="true">{i + 1}</span><h3>{s.t}</h3><p>{s.d}</p></li>))}
+      </ol>
+    </div>
+  </section>
+
+  <section class="sec alt" id="comparacion">
+    <div class="wrap narrow">
+      <h2 class="center">{t.compare.h2}</h2>
+      <div class="compare">
+        <div class="card"><h3>{t.compare.othersH}</h3><ul class="list x">{t.compare.others.map((x) => <li>{x}</li>)}</ul></div>
+        <div class="card me"><h3>{t.compare.meH}</h3><ul class="list">{t.compare.me.map((x) => <li>{x}</li>)}</ul></div>
+      </div>
+    </div>
+  </section>
+
+  <section class="sec" id="faq">
+    <div class="wrap narrow">
+      <h2 class="center">{t.faq.h2}</h2>
+      <div class="faq">
+        {t.faq.items.map((f) => (<details><summary>{f.q}</summary><p>{f.a}</p></details>))}
+      </div>
+    </div>
+  </section>
+
+  <section class="sec alt" id="sobre-mi">
+    <div class="wrap narrow center">
+      <h2>{t.about.h2}</h2>
+      <p>{t.about.text}</p>
+      <p class="links"><a href={SITE.linkedin} rel="me noopener" target="_blank">{t.about.linkedin}</a> <a href={SITE.github} rel="me noopener" target="_blank">{t.about.github}</a></p>
+    </div>
+  </section>
+
+  <section class="sec final">
+    <div class="wrap narrow center">
+      <h2>{t.cta.h2}</h2>
+      <p class="lead">{t.cta.sub}</p>
+      <button type="button" class="btn btn-lg" data-open-contact>{t.cta.btn}</button>
+    </div>
+  </section>
+</Base>

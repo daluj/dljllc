@@ -1,0 +1,57 @@
+---
+import Base from '../layouts/Base.astro';
+import { COPY } from '../data/copy';
+import { SITE, home, caseUrl, type Lang } from '../data/site';
+const { lang, slug } = Astro.props as { lang: Lang; slug: string };
+const t = COPY[lang];
+const idx = t.cases.items.findIndex((c) => c.slug === slug);
+const c = t.cases.items[idx];
+const alternates = { es: caseUrl('es', COPY.es.cases.items[idx].slug), en: caseUrl('en', COPY.en.cases.items[idx].slug) };
+const url = new URL(alternates[lang], SITE.url).href;
+const title = `${c.title} · ${c.industry} | ${SITE.brand}`;
+const schema = [
+  {
+    '@type': 'Article',
+    '@id': `${url}#article`,
+    headline: c.title,
+    description: c.seo,
+    inLanguage: t.htmlLang,
+    author: { '@id': `${SITE.url}/#david` },
+    publisher: { '@id': `${SITE.url}/#org` },
+    mainEntityOfPage: url,
+    dateModified: SITE.modified,
+    datePublished: SITE.modified,
+    about: c.industry,
+  },
+  {
+    '@type': 'BreadcrumbList',
+    itemListElement: [
+      { '@type': 'ListItem', position: 1, name: t.nav.home, item: new URL(home(lang), SITE.url).href },
+      { '@type': 'ListItem', position: 2, name: c.industry, item: url },
+    ],
+  },
+];
+---
+<Base lang={lang} title={title} description={c.seo} alternates={alternates} schema={schema} type="article">
+  <article class="sec">
+    <div class="wrap narrow case-page">
+      <p><a class="back" href={home(lang)}>← {t.cases.back}</a></p>
+      <p class="tag">{c.industry}</p>
+      <h1>{c.title}</h1>
+      <p class="lead">{c.problem}</p>
+
+      <h2>{t.cases.buildH}</h2>
+      <ul class="list">{c.build.map((x) => <li>{x}</li>)}</ul>
+
+      <h2>{t.cases.measureH}</h2>
+      <ul class="list">{c.measure.map((x) => <li>{x}</li>)}</ul>
+
+      <p class="muted small">{t.cases.note}</p>
+
+      <div class="card center cta-box">
+        <h2>{t.cases.ctaH}</h2>
+        <button type="button" class="btn btn-lg" data-open-contact>{t.hero.cta}</button>
+      </div>
+    </div>
+  </article>
+</Base>

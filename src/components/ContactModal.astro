@@ -1,0 +1,47 @@
+---
+import { COPY } from '../data/copy';
+import { SITE, type Lang } from '../data/site';
+const { lang } = Astro.props as { lang: Lang };
+const m = COPY[lang].modal;
+// Tally embed URL: transparent background and no title (we render our own heading).
+const embed = `https://tally.so/embed/${SITE.tally.id}?alignLeft=1&hideTitle=1&transparentBackground=1&dynamicHeight=0&lang=${lang}`;
+---
+<dialog id="contact-modal" aria-labelledby="contact-title" data-src={embed}>
+  <div class="modal-head">
+    <div>
+      <h2 id="contact-title">{m.title}</h2>
+      <p class="muted">{m.sub}</p>
+    </div>
+    <button type="button" class="modal-close" data-close-contact aria-label={m.close}>×</button>
+  </div>
+  <div class="modal-body">
+    <p class="muted modal-loading">{m.loading}</p>
+    <iframe title={m.title} width="100%" height="100%" frameborder="0" loading="lazy"></iframe>
+  </div>
+  <p class="modal-foot"><a href={SITE.tally.url} target="_blank" rel="noopener">{m.fallback}</a></p>
+</dialog>
+
+<script is:inline>
+  (function () {
+    var d = document.getElementById('contact-modal');
+    if (!d) return;
+    var f = d.querySelector('iframe');
+    function open(e) {
+      if (e) e.preventDefault();
+      if (!f.getAttribute('src')) f.setAttribute('src', d.dataset.src); // lazy: Tally loads on first open
+      if (typeof d.showModal === 'function') d.showModal();
+      else window.open('https://tally.so/r/' + d.dataset.src.split('/embed/')[1].split('?')[0], '_blank', 'noopener');
+      document.documentElement.classList.add('modal-open');
+    }
+    function close() { if (d.open) d.close(); }
+    document.addEventListener('click', function (e) {
+      var t = e.target.closest ? e.target.closest('[data-open-contact]') : null;
+      if (t) open(e);
+      if (e.target.closest && e.target.closest('[data-close-contact]')) close();
+      if (e.target === d) close(); // click on backdrop
+    });
+    d.addEventListener('close', function () { document.documentElement.classList.remove('modal-open'); });
+    f.addEventListener('load', function () { d.classList.add('loaded'); });
+    if (location.hash === '#contacto' || location.hash === '#contact') open();
+  })();
+</script>
