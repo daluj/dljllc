@@ -64,6 +64,7 @@ const graph = { '@context': 'https://schema.org', '@graph': [org, person, ...sch
     <link rel="alternate" hreflang="x-default" href={new URL(alternates.es, SITE.url).href} />
     <link rel="icon" href="/favicon.ico" sizes="any" />
     <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png" />
+    <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png" />
     <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
     <link rel="manifest" href="/manifest.json" />
     <link rel="alternate" type="text/plain" href="/llms.txt" title="llms.txt" />
@@ -89,7 +90,7 @@ const graph = { '@context': 'https://schema.org', '@graph': [org, person, ...sch
     <header class="site-header">
       <div class="wrap bar">
         <a class="brand" href={home(lang)} aria-label={`${SITE.brand} – ${t.nav.home}`}>
-          <img src="/logo.png" alt="" width="32" height="32" /><span>DLJ <b>Tech</b></span>
+          <img src="/logo-transparent.webp" alt="" width="36" height="40" />
         </a>
         <div class="bar-end">
           <a class="lang" href={alternates[other]} hreflang={other} lang={other} aria-label={t.nav.switchLabel}>{t.nav.switch}</a>

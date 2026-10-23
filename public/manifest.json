@@ -4,8 +4,8 @@
   "description": "Consultoría de IA y automatización · AI & automation consulting",
   "start_url": "/",
   "display": "standalone",
-  "background_color": "#0b1220",
-  "theme_color": "#0b1220",
+  "background_color": "#fffaf4",
+  "theme_color": "#fffaf4",
   "orientation": "portrait-primary",
   "icons": [
     {
