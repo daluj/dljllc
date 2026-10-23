@@ -8,7 +8,7 @@ export const SITE = {
   tally: { id: 'wk107o', url: 'https://tally.so/r/wk107o' },
   whatsapp: '34677242463',
   /** Portrait: drop a file in /public (e.g. '/david.jpg') and set it here. Null shows an initials placeholder. */
-  photo: null as string | null,
+  photo: '/photo.webp' as string | null,
   /** Real figures only, e.g. { es: ['120 h/mes ahorradas'], en: ['120 h/month saved'] }. The strip is hidden while empty. */
   stats: { es: [] as { v: string; l: string }[], en: [] as { v: string; l: string }[] },
   modified: '2026-10-22',
