@@ -3,7 +3,7 @@
   "version": "2.0.0",
   "private": true,
   "type": "module",
-  "description": "Bilingual (ES/EN) static landing page and portfolio for David Luengo Juárez / DLJ Tech",
+  "description": "Bilingual (ES/EN) static landing page and portfolio for David Luengo Juárez / DLJ Tech, digital transformation consultant",
   "scripts": {
     "dev": "astro dev --host",
     "build": "astro build",
