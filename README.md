@@ -1,6 +1,6 @@
 # DLJ Tech — David Luengo Juárez
 
-Bilingual (ES default, EN under `/en/`) static landing page + use-case portfolio. Astro, no client framework, ~0 KB framework JS.
+Bilingual (ES default, EN under `/en/`) static landing page + use-case portfolio for a digital transformation consultant. Astro, no client framework, ~0 KB framework JS.
 
 ```bash
 npm install

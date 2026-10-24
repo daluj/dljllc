@@ -22,8 +22,8 @@ const pageUrl = new URL(home(lang), SITE.url).href;
 const schema = [
   { '@type': 'WebPage', '@id': `${pageUrl}#page`, url: pageUrl, name: t.seo.title, description: t.seo.description, inLanguage: t.htmlLang, about: { '@id': `${SITE.url}/#david` }, dateModified: SITE.modified },
   {
-    '@type': 'Service', name: lang === 'es' ? 'Prueba de automatización con IA de 30 días' : '30-day AI automation trial',
-    provider: { '@id': `${SITE.url}/#org` }, serviceType: 'AI and workflow automation consulting', areaServed: 'Worldwide',
+    '@type': 'Service', name: lang === 'es' ? 'Sprint de transformación digital de 30 días' : '30-day digital transformation sprint',
+    provider: { '@id': `${SITE.url}/#org` }, serviceType: 'Digital transformation consulting', areaServed: 'Worldwide',
     offers: { '@type': 'Offer', price: '997', priceCurrency: 'USD' },
   },
   { '@type': 'FAQPage', '@id': `${pageUrl}#faq`, inLanguage: t.htmlLang, mainEntity: t.faq.items.map((f) => ({ '@type': 'Question', name: f.q, acceptedAnswer: { '@type': 'Answer', text: f.a } })) },
@@ -116,14 +116,16 @@ const schema = [
     <div class="wrap">
       <h2 class="center reveal">{t.cases.h2}</h2>
       <p class="center muted">{t.cases.sub}</p>
-      <div class="grid3 cases">
-        {t.cases.items.map((c) => (
-          <a class="card case reveal" href={caseUrl(lang, c.slug)}>
+      <div class="grid3 cases" id="cases-grid">
+        {t.cases.items.map((c, i) => (
+          <a class="card case reveal" href={caseUrl(lang, c.slug)} hidden={i >= 3 ? true : undefined} data-extra={i >= 3 ? '' : undefined}>
             <svg class="sector" viewBox="0 0 24 24" aria-hidden="true"><path d={icons[c.slug]} /></svg>
             <p class="tag">{c.industry}</p><h3>{c.title}</h3><span class="more">{t.cases.more} →</span>
           </a>
         ))}
       </div>
+      <p class="center show-more" hidden id="cases-toggle-wrap"><button type="button" class="linkbtn" id="cases-toggle" aria-expanded="false" aria-controls="cases-grid" data-more={t.cases.showMore} data-less={t.cases.showLess}>{t.cases.showMore} ↓</button></p>
+      <noscript><style>.case[hidden]{display:block}</style></noscript>
     </div>
   </section>
 
@@ -166,6 +168,19 @@ const schema = [
   <div class="sticky-cta"><a class="btn btn-block btn-wa" href={wa} target="_blank" rel="noopener">{t.wa.cta}</a></div>
 
   <script is:inline>
+    (function () {
+      var wrap = document.getElementById('cases-toggle-wrap'), btn = document.getElementById('cases-toggle');
+      var extra = document.querySelectorAll('[data-extra]');
+      if (wrap && btn && extra.length) {
+        wrap.hidden = false;
+        btn.addEventListener('click', function () {
+          var open = btn.getAttribute('aria-expanded') === 'true';
+          extra.forEach(function (el) { el.hidden = open; if (!open) el.classList.add('in'); });
+          btn.setAttribute('aria-expanded', String(!open));
+          btn.textContent = (open ? btn.dataset.more + ' ↓' : btn.dataset.less + ' ↑');
+        });
+      }
+    })();
     (function () {
       var els = document.querySelectorAll('.reveal');
       if (!('IntersectionObserver' in window) || matchMedia('(prefers-reduced-motion:reduce)').matches) return;
